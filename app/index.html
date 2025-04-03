@@ -9,15 +9,14 @@
 
   <body>
     <header id="header"></header>
-
-    <section id="content"></section>
+    <section class="content" id="content"></section>
 
     <script type="module">
+      import { DataMovie } from "./data/dataMovie.js";
       import { NavBar } from "./component/NavBar/script.js";
+      import { AnimeCard } from "./component/AnimeCard/script.js";
 
       // Controleur
-      // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
-      // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
 
       C.handlerAbout = function () {
@@ -26,27 +25,30 @@
         );
       };
 
-      C.start = function () {
+      C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
+        await V.renderAnimeCards(); // Appel de la fonction pour afficher les films
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
 
-      /**
-       * V.renderNavBar
-       *
-       * Cette fonction est responsable de l'affichage de la barre de navigation (NavBar).
-       * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
-       * formaté par le composant NavBar.
-       */
       V.renderNavBar = function (hAbout) {
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
+      };
+
+      V.renderAnimeCards = async function () {
+        let content = document.querySelector("#content");
+        let movies = await DataMovie.getMovies();
+
+        movies.forEach((movie) => {
+          let cardHTML = AnimeCard.format(movie.image, movie.name);
+          content.innerHTML += cardHTML;
+        });
       };
 
       C.start(); // Démarre l'application
     </script>
   </body>
 </html>
-<script type="module"></script>
