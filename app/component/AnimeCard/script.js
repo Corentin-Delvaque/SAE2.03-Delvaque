@@ -10,6 +10,7 @@ AnimeCard.format = function (Affiche, Name) {
 
   html = html.replace("{{Affiche}}", Affiche);
   html = html.replace("{{Name}}", truncatedName);
+  html = html.replace("{{Name}}", truncatedName);
   return html;
 };
 

@@ -42,6 +42,11 @@
         let content = document.querySelector("#content");
         let movies = await DataMovie.getMovies();
 
+        if (movies.length === 0) {
+          content.innerHTML = "<p>Aucun film disponible pour le moment.</p>";
+          return;
+        }
+
         movies.forEach((movie) => {
           let cardHTML = AnimeCard.format(movie.image, movie.name);
           content.innerHTML += cardHTML;
