@@ -8,7 +8,7 @@ define("DBPWD", "delvaque1");
 function getMovies() {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
-        $sql = "SELECT name, image FROM Movie";
+        $sql = "SELECT * FROM Movie";
         $stmt = $cnx->prepare($sql);
         $stmt->execute();
         $res = $stmt->fetchAll(PDO::FETCH_OBJ);

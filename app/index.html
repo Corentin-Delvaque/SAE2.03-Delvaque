@@ -11,6 +11,11 @@
     <header id="header"></header>
     <section class="content" id="content"></section>
 
+    <div id="iframeContainer" onclick="closeTrailer()">
+      <span id="closeBtn" onclick="closeTrailer()">✖</span>
+      <iframe id="trailerIframe" allowfullscreen></iframe>
+    </div>
+
     <script type="module">
       import { DataMovie } from "./data/dataMovie.js";
       import { NavBar } from "./component/NavBar/script.js";
@@ -38,6 +43,14 @@
         header.innerHTML = NavBar.format(hAbout);
       };
 
+      window.closeTrailer = function () {
+        const container = document.getElementById("iframeContainer");
+        const iframe = document.getElementById("trailerIframe");
+
+        iframe.src = "";
+        container.style.display = "none";
+      };
+
       V.renderAnimeCards = async function () {
         let content = document.querySelector("#content");
         let movies = await DataMovie.getMovies();
@@ -48,9 +61,34 @@
         }
 
         movies.forEach((movie) => {
-          let cardHTML = AnimeCard.format(movie.image, movie.name);
+          let cardHTML = AnimeCard.format(
+            movie.trailer,
+            movie.image,
+            movie.name
+          );
           content.innerHTML += cardHTML;
         });
+
+        // Gestion des clics sur les boutons ou images
+        document.querySelectorAll(".trailer-trigger").forEach((el) => {
+          el.addEventListener("click", () => {
+            const url = el.getAttribute("data-trailer");
+            showTrailer(url);
+          });
+        });
+
+        function showTrailer(url) {
+          const container = document.getElementById("iframeContainer");
+          const iframe = document.getElementById("trailerIframe");
+
+          // Ajouter le paramètre autoplay=1 à l'URL
+          const autoplayUrl = url.includes("?")
+            ? `${url}&autoplay=1`
+            : `${url}?autoplay=1`;
+
+          iframe.src = autoplayUrl;
+          container.style.display = "flex";
+        }
       };
 
       C.start(); // Démarre l'application
