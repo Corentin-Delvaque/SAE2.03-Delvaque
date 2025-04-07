@@ -28,10 +28,10 @@
 
 .animecard__button--information {
   position: absolute;
-  bottom: 3.5%;
-  right: 5%;
-  width: 2.5rem;
-  height: 2.5rem;
+  bottom: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 50%;
   display: flex;
@@ -97,15 +97,12 @@ iframe {
   left: 0;
   width: 100%;
   height: 100%;
-
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 1rem;
   z-index: 10;
 }
 
-.animecard__information:hover,
-.animecard__information:focus,
-.animecard__information:active {
+.animecard__information:hover {
   display: block;
 }
