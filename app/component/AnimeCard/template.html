@@ -1,11 +1,30 @@
-<div class="animecard trailer-trigger" data-trailer="{{Trailer}}">
-  <div class="animecard__image">
+<div class="animecard">
+  <div class="animecard__image trailer-trigger" data-trailer="{{Trailer}}">
     <img
       src="../server/images/{{Affiche}}"
+      class="animecard__image--affiche"
       alt="Affiche de l'anime : {{Name}}"
     />
+    <button class="animecard__button--information">
+      <img
+        src="../server/images/information.svg"
+        class="animecard__image--information"
+        alt="Information sur l'anime : {{Name}}"
+      />
+    </button>
+    <div class="animecard__information">
+      <h2 class="animecard__information--title">{{Name}}</h2>
+      <p class="animecard__information--description">
+        Description : {{Description}}
+      </p>
+      <p class="animecard__information--year">Date de sortie : {{Year}}</p>
+      <p class="animecard__information--time">Durée : {{Length}} minutes</p>
+      <p class="animecard__information--min-age">
+        Âge minimum : {{Min_Age}} ans
+      </p>
+    </div>
   </div>
-  <div class="animecard__content">
-    <h2 class="animecard__title">{{Name}}</h2>
+  <div class="animecard__content trailer-trigger" data-trailer="{{Trailer}}">
+    <h1 class="animecard__title">{{Name}}</h1>
   </div>
 </div>

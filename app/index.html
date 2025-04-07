@@ -60,11 +60,16 @@
           return;
         }
 
-        movies.forEach((movie) => {
+        movies.forEach((movie, index) => {
           let cardHTML = AnimeCard.format(
             movie.trailer,
             movie.image,
-            movie.name
+            movie.description,
+            movie.year,
+            movie.length,
+            movie.min_age,
+            movie.name,
+            movie.id
           );
           content.innerHTML += cardHTML;
         });

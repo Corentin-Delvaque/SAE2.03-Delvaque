@@ -1,33 +1,59 @@
 .animecard {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   width: 18rem;
   height: auto;
-  position: relative;
+  overflow: hidden;
 }
 
 .animecard__image {
-  width: 18rem;
+  position: relative;
+  width: 100%;
   height: 25rem;
   border-radius: 1rem 1rem 0 0;
   overflow: hidden;
 }
 
-.animecard__image img {
+.animecard__image--affiche {
   width: 100%;
   height: 100%;
 }
 
+.animecard__image--information {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animecard__button--information {
+  position: absolute;
+  bottom: 3.5%;
+  right: 5%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.animecard__button--information:hover + .animecard__information,
+.animecard__button--information:focus + .animecard__information {
+  display: block;
+}
+
 .animecard__content {
-  position: relative;
-  border-radius: 0 0 1rem 1rem;
   background-color: rgba(0, 0, 0, 1);
   color: white;
   padding: 1rem;
+  text-align: center;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .animecard__title {
-  text-align: center;
   font-size: 1.5rem;
   margin: 0;
 }
@@ -56,9 +82,30 @@ iframe {
 
 #closeBtn {
   position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 30px;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
   color: white;
   cursor: pointer;
+}
+
+.animecard__information {
+  display: none;
+  position: absolute;
+  border-radius: 1rem 1rem 0 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.animecard__information:hover,
+.animecard__information:focus,
+.animecard__information:active {
+  display: block;
 }
