@@ -7,3 +7,4 @@
 @import "./index.css" layer(components);
 @import "../component/NavBar/style.css" layer(components);
 @import "../component/AnimeCard/style.css" layer(components);
+@import "../component/CategorySection/style.css" layer(components);

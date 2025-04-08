@@ -10,6 +10,11 @@ function getMoviesController() {
     return $movies;
 }
 
+function getMoviesFilteredController() {
+    $id_category = $_REQUEST['id_category'];
+    return getMoviesFiltered($id_category, "%", "%");
+}
+
 function addMovieController() {
     $name = $_REQUEST['name'];
     $year = $_REQUEST['year'];
@@ -21,6 +26,5 @@ function addMovieController() {
     $trailer = $_REQUEST['trailer'];
     $min_age = $_REQUEST['min_age'];
 
-    // Appelle la fonction du modèle pour ajouter le film
     return addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age);
 }

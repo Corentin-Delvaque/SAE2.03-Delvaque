@@ -8,4 +8,15 @@ DataMovie.getMovies = async function () {
   return movies;
 };
 
+DataMovie.getMoviesFiltered = async function (categoryId) {
+  let response = await fetch(
+    HOST_URL +
+      "/server/script.php?todo=getMoviesFiltered&id_category=" +
+      categoryId
+  );
+  let movies = await response.json();
+  console.log(`Données récupérées pour la catégorie ${categoryId}:`, movies);
+  return movies;
+};
+
 export { DataMovie };

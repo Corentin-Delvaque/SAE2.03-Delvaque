@@ -1,8 +1,15 @@
 .animecard {
-  position: relative;
-  width: 18rem;
-  height: auto;
+  width: 100%; /* Laissez la grille gérer la largeur */
+  max-width: 18rem; /* Limitez la largeur maximale */
+  height: auto; /* Ajustez automatiquement la hauteur */
   overflow: hidden;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.animecard:hover {
+  transform: scale(1.025);
+  transition: transform 0.3s ease-in-out;
 }
 
 .animecard__image {

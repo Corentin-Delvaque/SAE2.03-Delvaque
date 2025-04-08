@@ -18,6 +18,22 @@ function getMovies() {
     }
 }
 
+function getMoviesFiltered($id_category, $name, $image) {
+    try {
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
+        $sql = "SELECT * FROM Movie WHERE id_category = :id_category AND name LIKE :name AND image LIKE :image";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_category', $id_category);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $res;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
 function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'INSERT INTO Movie(name, year, length, description, director, id_category, image, trailer, min_age) VALUES(:name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age)';

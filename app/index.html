@@ -8,41 +8,71 @@
   </head>
 
   <body>
+    <!-- Header Section -->
     <header id="header"></header>
-    <section class="content" id="content"></section>
 
+    <!-- Category Selector -->
+    <div id="category-selector">
+      <label for="category">Choisissez une catégorie :</label>
+      <select id="category">
+        <option value="all">Tous les animes</option>
+        <option value="1">Action</option>
+        <option value="2">Comédie</option>
+        <option value="3">Drame</option>
+        <option value="4">Science-fiction</option>
+        <option value="5">Animation</option>
+        <option value="6">Thriller</option>
+        <option value="7">Horreur</option>
+        <option value="8">Aventure</option>
+        <option value="9">Fantaisie</option>
+        <option value="10">Documentaire</option>
+      </select>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="content" id="content"></section>
+    <section class="content2" id="content2"></section>
+
+    <!-- Trailer Modal -->
     <div id="iframeContainer" onclick="closeTrailer()">
       <span id="closeBtn" onclick="closeTrailer()">✖</span>
       <iframe id="trailerIframe" allowfullscreen></iframe>
     </div>
 
+    <!-- JavaScript Section -->
     <script type="module">
+      // Import Modules
       import { DataMovie } from "./data/dataMovie.js";
       import { NavBar } from "./component/NavBar/script.js";
       import { AnimeCard } from "./component/AnimeCard/script.js";
+      import { CategorySection } from "./component/CategorySection/script.js";
 
-      // Controleur
+      // Global Controller Object
       window.C = {};
 
+      // About Handler
       C.handlerAbout = function () {
         alert(
           "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
         );
       };
 
+      // Application Start Function
       C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
-        await V.renderAnimeCards(); // Appel de la fonction pour afficher les films
+        await V.renderAnimeCards(); // Affiche les cartes d'anime
       };
 
-      // Vue (contient tout ce qui est relatif à l'affichage)
+      // Global View Object
       window.V = {};
 
+      // Render Navigation Bar
       V.renderNavBar = function (hAbout) {
-        let header = document.querySelector("#header");
+        const header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
       };
 
+      // Close Trailer Function
       window.closeTrailer = function () {
         const container = document.getElementById("iframeContainer");
         const iframe = document.getElementById("trailerIframe");
@@ -51,20 +81,22 @@
         container.style.display = "none";
       };
 
+      // Render Anime Cards
       V.renderAnimeCards = async function () {
-        let content = document.querySelector("#content");
-        let movies = await DataMovie.getMovies();
+        const content = document.querySelector("#content");
+        const movies = await DataMovie.getMovies();
 
         if (movies.length === 0) {
           content.innerHTML = "<p>Aucun film disponible pour le moment.</p>";
           return;
         }
 
-        movies.forEach((movie, index) => {
-          let cardHTML = AnimeCard.format(
+        movies.forEach((movie) => {
+          const cardHTML = AnimeCard.format(
             movie.trailer,
             movie.image,
             movie.description,
+            movie.director,
             movie.year,
             movie.length,
             movie.min_age,
@@ -74,7 +106,7 @@
           content.innerHTML += cardHTML;
         });
 
-        // Gestion des clics sur les boutons ou images
+        // Add Event Listeners for Trailer Buttons
         document.querySelectorAll(".trailer-trigger").forEach((el) => {
           el.addEventListener("click", () => {
             const url = el.getAttribute("data-trailer");
@@ -82,11 +114,12 @@
           });
         });
 
+        // Show Trailer Function
         function showTrailer(url) {
           const container = document.getElementById("iframeContainer");
           const iframe = document.getElementById("trailerIframe");
 
-          // Ajouter le paramètre autoplay=1 à l'URL
+          // Add autoplay parameter to the URL
           const autoplayUrl = url.includes("?")
             ? `${url}&autoplay=1`
             : `${url}?autoplay=1`;
@@ -96,7 +129,71 @@
         }
       };
 
-      C.start(); // Démarre l'application
+      // Render Category Sections
+      V.renderCategorySections = async function () {
+        const content2 = document.querySelector("#content2");
+
+        // Liste des catégories (id et nom)
+        const categories = [
+          { id: 1, name: "Action" },
+          { id: 2, name: "Comédie" },
+          { id: 3, name: "Drame" },
+          { id: 4, name: "Science-fiction" },
+          { id: 5, name: "Animation" },
+          { id: 6, name: "Thriller" },
+          { id: 7, name: "Horreur" },
+          { id: 8, name: "Aventure" },
+          { id: 9, name: "Fantaisiee" },
+          { id: 10, name: "Documentaire" },
+        ];
+
+        // Générer les sections pour chaque catégorie
+        for (let category of categories) {
+          const sectionHTML = await CategorySection.format(
+            category.id,
+            category.name
+          );
+          content2.innerHTML += sectionHTML;
+        }
+      };
+
+      // Category Change Event Listener
+      document
+        .getElementById("category")
+        .addEventListener("change", async (event) => {
+          const selectedCategory = event.target.value;
+          const content = document.querySelector("#content"); // Section principale
+          const content2 = document.querySelector("#content2"); // Section des catégories
+
+          content.innerHTML = ""; // Efface les films de la section principale
+          content2.innerHTML = ""; // Efface les sections de catégories
+
+          if (selectedCategory === "all") {
+            // Afficher tous les animes
+            await V.renderAnimeCards();
+          } else {
+            // Afficher les animes filtrés par catégorie
+            const categoryName = document.querySelector(
+              `#category option[value="${selectedCategory}"]`
+            ).textContent;
+
+            const sectionHTML = await CategorySection.format(
+              parseInt(selectedCategory),
+              categoryName
+            );
+
+            // Remplace {{Category}} par le nom de la catégorie
+            const updatedHTML = sectionHTML.replace(
+              "{{Category}}",
+              categoryName
+            );
+
+            content2.innerHTML = updatedHTML;
+          }
+        });
+
+      // Start the Application
+      C.start();
     </script>
   </body>
 </html>
