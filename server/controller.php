@@ -28,3 +28,11 @@ function addMovieController() {
 
     return addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age);
 }
+
+function addProfilController() {
+    $name = $_REQUEST['name'];
+    $avatar = $_REQUEST['avatar'];
+    $age_restriction = $_REQUEST['age_restriction'];
+
+    return addProfil($name, $avatar, $age_restriction);
+}

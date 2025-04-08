@@ -53,3 +53,15 @@ function addMovie($name, $year, $length, $description, $director, $id_category, 
      var_dump($res);
     return $res; 
 }
+
+function addProfil($name, $avatar, $age_restriction) {
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = 'INSERT INTO UserProfil(name, avatar, age_restriction) VALUES(:name, :avatar, :age_restriction)';
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':age_restriction', $age_restriction);
+  
+    $stmt->execute();
+    return $stmt->rowCount();
+}

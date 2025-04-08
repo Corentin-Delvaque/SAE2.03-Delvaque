@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 06 avr. 2025 à 17:57
+-- Généré le : mar. 08 avr. 2025 à 13:37
 -- Version du serveur : 10.11.11-MariaDB-0+deb12u1
 -- Version de PHP : 8.3.19
 
@@ -93,6 +93,28 @@ INSERT INTO `Movie` (`id`, `name`, `year`, `length`, `description`, `director`, 
 (18, 'Your Name', 2016, 107, 'Deux adolescents échangent leurs corps de manière mystérieuse.', 'Makoto Shinkai', 5, 'your_name.jpg', 'https://www.youtube.com/embed/AROOK45LXXg', 10),
 (19, 'Josee, the Tiger and the Fish', 2020, 98, 'Une jeune femme en fauteuil roulant et un étudiant découvrent le monde ensemble.', 'Kotaro Tamura', 5, 'josee_tiger_fish.jpg', 'https://www.youtube.com/embed/2IxY2U4VMCc?si=s8Z7VbChLdbAAW1x', 10);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UserProfile`
+--
+
+CREATE TABLE `UserProfile` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `age_restriction` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Déchargement des données de la table `UserProfile`
+--
+
+INSERT INTO `UserProfile` (`id`, `name`, `avatar`, `age_restriction`) VALUES
+(1, 'Enfant', 'https://doodleipsum.com/700x700/avatar-1', 10),
+(2, 'Ado', 'https://doodleipsum.com/700x700/avatar-2', 15),
+(3, 'Adulte', 'https://doodleipsum.com/700x700/avatar-3', 18);
+
 --
 -- Index pour les tables déchargées
 --
@@ -111,6 +133,12 @@ ALTER TABLE `Movie`
   ADD KEY `id_category` (`id_category`);
 
 --
+-- Index pour la table `UserProfile`
+--
+ALTER TABLE `UserProfile`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -125,6 +153,12 @@ ALTER TABLE `Category`
 --
 ALTER TABLE `Movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT pour la table `UserProfile`
+--
+ALTER TABLE `UserProfile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées

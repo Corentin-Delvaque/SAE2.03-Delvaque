@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="./css/base.css" />
   </head>
   <body>
-    <section id="log"></section>
-    <section id="newAnime"></section>
+    <div class="container">
+      <section id="log"></section>
+      <section id="newAnime"></section>
+      <section id="newProfil"></section>
+    </div>
 
     <script type="module">
       import { NewAnime } from "./component/NewAnimeForm/script.js";
+      import { NewProfil } from "./component/NewProfilForm/script.js";
       import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfil } from "./data/dataProfil.js";
       import { Log } from "./component/Log/script.js";
 
       window.C = {};
@@ -24,9 +29,17 @@
         V.renderLog(res);
       };
 
+      C.handlerCreateProfil = async function () {
+        let form = document.querySelector(".newProfil__form");
+        let fd = new FormData(form);
+        let res = await DataProfil.add(fd);
+        V.renderLog(res);
+      };
+
       C.start = function () {
         V.renderLog("Démarrage de l'application");
         V.renderNewMenu("C.handlerCreate()");
+        V.renderNewProfil("C.handlerCreateProfil()");
       };
 
       window.V = {};
@@ -38,7 +51,12 @@
 
       V.renderNewMenu = function (handler) {
         let content = document.querySelector("#newAnime");
-        content.innerHTML = NewAnime.format(handler); // ici "Newfilm"
+        content.innerHTML = NewAnime.format(handler);
+      };
+
+      V.renderNewProfil = function (handler) {
+        let content = document.querySelector("#newProfil");
+        content.innerHTML = NewProfil.format(handler);
       };
 
       C.start();

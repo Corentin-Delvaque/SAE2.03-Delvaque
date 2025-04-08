@@ -6,3 +6,4 @@
 
 @import "../component/Log/style.css" layer(components);
 @import "../component/NewAnimeForm/style.css" layer(components);
+@import "../component/NewProfilForm/style.css" layer(components);

@@ -1,5 +1,7 @@
 /* Style général pour le formulaire */
-.newAnime {
+.newProfil {
+  display: flex;
+  flex-direction: column;
   width: 37rem;
   margin: 1rem auto;
   padding: 1rem;
@@ -10,7 +12,7 @@
   font-family: Arial, sans-serif;
 }
 
-.newAnime__title {
+.newProfil__title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 20px;
@@ -18,14 +20,14 @@
   color: #333;
 }
 
-.newAnime__form {
+.newProfil__form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.newAnime__form input,
-.newAnime__form select {
+.newProfil__form input,
+.newProfil__form select {
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -34,12 +36,12 @@
   transition: border-color 0.3s ease;
 }
 
-.newAnime__form input:focus,
-.newAnime__form select:focus {
+.newProfil__form input:focus,
+.newProfil__form select:focus {
   border-color: #007bff;
 }
 
-.newAnime__form input[type="button"] {
+.newProfil__form input[type="button"] {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -48,26 +50,26 @@
   transition: background-color 0.3s ease;
 }
 
-.newAnime__form input[type="button"]:hover {
+.newProfil__form input[type="button"]:hover {
   background-color: #0056b3;
 }
 
-.newAnime__form select {
+.newProfil__form select {
   background-color: #fff;
 }
 
-.newAnime__form input::placeholder {
+.newProfil__form input::placeholder {
   color: #aaa;
   font-style: italic;
 }
 
 /* Ajout d'un style pour les messages d'erreur ou d'information */
-.newAnime__form .error {
+.newProfil__form .error {
   color: red;
   font-size: 0.9rem;
 }
 
-.newAnime__form .success {
+.newProfil__form .success {
   color: green;
   font-size: 0.9rem;
 }
