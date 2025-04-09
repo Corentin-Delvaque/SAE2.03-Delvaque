@@ -85,6 +85,20 @@
         container.style.display = "none";
       };
 
+      // Définir showTrailer comme une fonction globale
+      window.showTrailer = function (url) {
+        const container = document.getElementById("iframeContainer");
+        const iframe = document.getElementById("trailerIframe");
+
+        // Ajouter le paramètre autoplay à l'URL
+        const autoplayUrl = url.includes("?")
+          ? `${url}&autoplay=1`
+          : `${url}?autoplay=1`;
+
+        iframe.src = autoplayUrl;
+        container.style.display = "flex";
+      };
+
       // Render Anime Cards
       V.renderAnimeCards = async function () {
         const content = document.querySelector("#content");
@@ -117,20 +131,6 @@
             showTrailer(url);
           });
         });
-
-        // Show Trailer Function
-        function showTrailer(url) {
-          const container = document.getElementById("iframeContainer");
-          const iframe = document.getElementById("trailerIframe");
-
-          // Add autoplay parameter to the URL
-          const autoplayUrl = url.includes("?")
-            ? `${url}&autoplay=1`
-            : `${url}?autoplay=1`;
-
-          iframe.src = autoplayUrl;
-          container.style.display = "flex";
-        }
       };
 
       // Render Profil Cards
@@ -214,13 +214,15 @@
               categoryName
             );
 
-            // Remplace {{Category}} par le nom de la catégorie
-            const updatedHTML = sectionHTML.replace(
-              "{{Category}}",
-              categoryName
-            );
+            content2.innerHTML = sectionHTML;
 
-            content2.innerHTML = updatedHTML;
+            // Réattacher les gestionnaires d'événements pour les trailers
+            document.querySelectorAll(".trailer-trigger").forEach((el) => {
+              el.addEventListener("click", () => {
+                const url = el.getAttribute("data-trailer");
+                showTrailer(url);
+              });
+            });
           }
         });
 
