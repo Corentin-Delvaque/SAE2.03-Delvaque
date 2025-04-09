@@ -10,6 +10,14 @@ function getMoviesController() {
     return $movies;
 }
 
+function getProfilsController() {
+    $id = $_REQUEST['id'];
+    $name = $_REQUEST['name'];
+    $avatar = $_REQUEST['avatar'];
+    $age_restriction = $_REQUEST['age_restriction'];
+    return getProfils($id, $name, $avatar, $age_restriction);
+}
+
 function getMoviesFilteredController() {
     $id_category = $_REQUEST['id_category'];
     return getMoviesFiltered($id_category, "%", "%");

@@ -43,8 +43,10 @@
     <script type="module">
       // Import Modules
       import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfil } from "./data/dataProfil.js";
       import { NavBar } from "./component/NavBar/script.js";
       import { AnimeCard } from "./component/AnimeCard/script.js";
+      import { ProfilCard } from "./component/ProfilCard/script.js";
       import { CategorySection } from "./component/CategorySection/script.js";
 
       // Global Controller Object
@@ -60,16 +62,18 @@
       // Application Start Function
       C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
-        await V.renderAnimeCards(); // Affiche les cartes d'anime
+        await V.renderAnimeCards();
+        await V.renderProfilCards();
       };
 
       // Global View Object
       window.V = {};
 
       // Render Navigation Bar
-      V.renderNavBar = function (hAbout) {
+      V.renderNavBar = function (hAbout, hProfil) {
         const header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
+        header.innerHTML = NavBar.format(hProfil);
       };
 
       // Close Trailer Function
@@ -127,6 +131,34 @@
           iframe.src = autoplayUrl;
           container.style.display = "flex";
         }
+      };
+
+      // Render Profil Cards
+      V.renderProfilCards = async function () {
+        const ProfilSelector = document.querySelector("#ProfilSelector");
+        const profils = await DataProfil.getProfils();
+
+        if (profils.length === 0) {
+          ProfilSelector.innerHTML =
+            "<p>Aucun profil disponible pour le moment.</p>";
+          return;
+        }
+
+        profils.forEach((profil) => {
+          const cardHTML = ProfilCard.format(
+            profil.name,
+            profil.avatar,
+            profil.age_restriction,
+            profil.id
+          );
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = cardHTML;
+          const cardElement = tempDiv.firstChild;
+
+          // Ajout du gestionnaire de sélection
+
+          ProfilSelector.appendChild(cardElement);
+        });
       };
 
       // Render Category Sections

@@ -1,0 +1,44 @@
+.profil-card {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: left;
+  width: auto;
+  height: 4rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: var(--color-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.profil-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profil-card__avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.profil-card__name {
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-fg);
+  margin-bottom: 0.3rem;
+}
+
+.profil-card__age-restriction {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}

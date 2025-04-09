@@ -18,6 +18,19 @@ function getMovies() {
     }
 }
 
+function getProfils() {
+    try {
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
+        $sql = "SELECT * FROM UserProfil";
+        $stmt = $cnx->prepare($sql);
+        $stmt->execute();
+        $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $res;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
 function getMoviesFiltered($id_category, $name, $image) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
@@ -33,6 +46,8 @@ function getMoviesFiltered($id_category, $name, $image) {
         return false;
     }
 }
+
+
 
 function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);

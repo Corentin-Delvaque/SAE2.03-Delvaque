@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 08 avr. 2025 à 13:37
+-- Généré le : mer. 09 avr. 2025 à 08:15
 -- Version du serveur : 10.11.11-MariaDB-0+deb12u1
 -- Version de PHP : 8.3.19
 
@@ -73,9 +73,9 @@ CREATE TABLE `Movie` (
 
 INSERT INTO `Movie` (`id`, `name`, `year`, `length`, `description`, `director`, `id_category`, `image`, `trailer`, `min_age`) VALUES
 (0, 'Sword Art Online', 2012, 24, 'Un jeu en réalité augmentée devient un danger mortel.', 'Reki Kawahara', 5, 'Sword_Art_Online.jpg', 'https://www.youtube.com/embed/jfaUeCNm_o4?si=JSol6MImi1hipjgV', 12),
-(1, 'Jujutsu Kaisen', 2021, 105, 'Des exorcistes affrontent des malédictions dans un monde où la mort rôde à chaque coin de rue, et un lycéen devenu réceptacle d’un démon surpuissant lutte pour garder le contrôle.', 'Sunghoo Park', 5, 'jujutsu_kaisen.jpg', 'https://www.youtube.com/embed/hkir9oZs0M0?si=t2izZtTOje03DkzB', 14),
-(2, 'Darling in the FranXX', 2018, 24, 'Des enfants pilotent des robots pour protéger l\'humanité.', 'Atsushi Nishigori', 5, 'darling_franxx.jpg', 'https://www.youtube.com/embed/4zJZOSwmvUk?si=h_dlYTxYRKLE95MZ', 14),
-(3, 'One Piece Film: Red', 2022, 115, 'Le monde découvre enfin le plus grand secret de Shanks.', 'Gorō Taniguchi', 5, 'one_piece_red.jpg', 'https://www.youtube.com/embed/XfkjE-NbYyA?si=gnDsJOjgTgKa2UDD', 10),
+(1, 'Jujutsu Kaisen', 2021, 105, 'Des exorcistes affrontent des malédictions dans un monde où la mort rôde à chaque coin de rue, et un lycéen devenu réceptacle d’un démon surpuissant lutte pour garder le contrôle.', 'Sunghoo Park', 3, 'jujutsu_kaisen.jpg', 'https://www.youtube.com/embed/hkir9oZs0M0?si=t2izZtTOje03DkzB', 14),
+(2, 'Darling in the FranXX', 2018, 24, 'Des enfants pilotent des robots pour protéger l\'humanité.', 'Atsushi Nishigori', 6, 'darling_franxx.jpg', 'https://www.youtube.com/embed/4zJZOSwmvUk?si=h_dlYTxYRKLE95MZ', 14),
+(3, 'One Piece Film: Red', 2022, 115, 'Le monde découvre enfin le plus grand secret de Shanks.', 'Gorō Taniguchi', 3, 'one_piece_red.jpg', 'https://www.youtube.com/embed/XfkjE-NbYyA?si=gnDsJOjgTgKa2UDD', 10),
 (4, 'Oshi no Ko', 2023, 11, 'Une idole meurt tragiquement et se réincarne dans le monde du showbiz.', 'Daisuke Hiramaki', 5, 'oshi_no_ko.jpg', 'https://www.youtube.com/embed/ijxs5m4EmiM?si=WnzMFsqonWXvOeDY', 14),
 (5, 'Dandadan', 2025, 24, 'Une lycéenne affronte aliens et esprits avec un camarade possédé.', 'Fuga Yamashiro', 5, 'dandadan.jpg', 'https://www.youtube.com/embed/K7gb0V0O69g?si=ULXP1buBUHvNf2mK', 14),
 (6, 'Demon Slayer: Mugen Train', 2020, 117, 'Tanjiro et ses compagnons affrontent un démon dans un train.', 'Haruo Sotozaki', 5, 'mugen_train.jpg', 'https://www.youtube.com/embed/Eam4YDTTkdI?si=biF87OurjYk0GIt5', 14),
@@ -96,10 +96,10 @@ INSERT INTO `Movie` (`id`, `name`, `year`, `length`, `description`, `director`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `UserProfile`
+-- Structure de la table `UserProfil`
 --
 
-CREATE TABLE `UserProfile` (
+CREATE TABLE `UserProfil` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
@@ -107,10 +107,10 @@ CREATE TABLE `UserProfile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
--- Déchargement des données de la table `UserProfile`
+-- Déchargement des données de la table `UserProfil`
 --
 
-INSERT INTO `UserProfile` (`id`, `name`, `avatar`, `age_restriction`) VALUES
+INSERT INTO `UserProfil` (`id`, `name`, `avatar`, `age_restriction`) VALUES
 (1, 'Enfant', 'https://doodleipsum.com/700x700/avatar-1', 10),
 (2, 'Ado', 'https://doodleipsum.com/700x700/avatar-2', 15),
 (3, 'Adulte', 'https://doodleipsum.com/700x700/avatar-3', 18);
@@ -133,9 +133,9 @@ ALTER TABLE `Movie`
   ADD KEY `id_category` (`id_category`);
 
 --
--- Index pour la table `UserProfile`
+-- Index pour la table `UserProfil`
 --
-ALTER TABLE `UserProfile`
+ALTER TABLE `UserProfil`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -152,13 +152,13 @@ ALTER TABLE `Category`
 -- AUTO_INCREMENT pour la table `Movie`
 --
 ALTER TABLE `Movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT pour la table `UserProfile`
+-- AUTO_INCREMENT pour la table `UserProfil`
 --
-ALTER TABLE `UserProfile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `UserProfil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées

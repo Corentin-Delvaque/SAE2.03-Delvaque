@@ -1,12 +1,26 @@
 .navbar {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
   color: var(--color-fg);
   background-color: var(--color-bg);
 
+  .navbar__list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   .navbar__item {
+    display: flex;
+    flex-direction: row;
     --_offset: 0.2rem;
     padding: 0.5rem 1rem;
     text-decoration: underline;
@@ -18,4 +32,30 @@
       --_offset: 0.5rem;
     }
   }
+
+  .navbar__item.deroulant:hover .sous {
+    display: block;
+  }
+}
+
+.sous {
+  display: none;
+  position: absolute;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  list-style: none;
+  margin: 0;
+  translate: 0 2rem;
+  z-index: 10;
+}
+
+.sous li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.sous li:hover {
+  background-color: var(--color-hover-bg);
 }

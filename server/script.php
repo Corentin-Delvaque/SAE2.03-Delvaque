@@ -17,6 +17,10 @@ if ( isset($_REQUEST['todo']) ){
       $data = getMoviesFilteredController();
       break;
 
+    case 'getProfils':
+      $data = getProfilsController();
+      break;
+
     case 'addMovie':
         $data = addMovieController();
       break;
