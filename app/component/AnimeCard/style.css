@@ -5,11 +5,16 @@
   overflow: hidden;
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.1);
+  outline: #ffcc0080 solid 0.2rem;
 }
 
 .animecard:hover {
   transform: scale(1.025);
   transition: transform 0.3s ease-in-out;
+  outline: #ffcc00ff solid 0.2rem;
+  .animecard__title {
+    color: #fff;
+  }
 }
 
 .animecard__image {
@@ -61,12 +66,9 @@
 }
 
 .animecard__title {
+  color: #ccc;
   font-size: 1.5rem;
   margin: 0;
-}
-
-.animecard__title:hover {
-  color: #ffcc00;
 }
 
 #iframeContainer {

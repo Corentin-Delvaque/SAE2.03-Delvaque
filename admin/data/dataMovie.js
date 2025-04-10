@@ -15,7 +15,7 @@ DataMovie.add = async function (fdata) {
   );
   let data = await answer.json();
   //window.alert("Film créé. Id="+data.id);
-  V.renderLog("Film créé. Id=" + data.id);
+  V.renderLog("Film créé.");
   return data;
 };
 

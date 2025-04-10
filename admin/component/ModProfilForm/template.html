@@ -1,0 +1,45 @@
+<div class="modProfil">
+  <h2 class="modProfil__title">Modifier un profil</h2>
+  <form class="modProfil__form" name="modProfil__form" id="modProfil__form">
+    <label for="id">Id du profil :</label>
+    <input
+      required
+      type="number"
+      id="id"
+      name="id"
+      placeholder="Id du profil"
+    />
+
+    <label for="name">Nom du profil :</label>
+    <input
+      required
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Nom du profil"
+    />
+
+    <label for="avatar">Lien de l'avatar :</label>
+    <input
+      required
+      type="text"
+      id="avatar"
+      name="avatar"
+      placeholder="Lien de l'avatar"
+    />
+
+    <label for="age_restriction">Restriction d'âge :</label>
+    <input
+      required
+      type="number"
+      id="age_restriction"
+      name="age_restriction"
+      min="0"
+      max="18"
+      step="1"
+      placeholder="Restriction d'âge"
+    />
+
+    <input onclick="{{handler}}" type="button" value="Ajouter" />
+  </form>
+</div>

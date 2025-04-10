@@ -12,20 +12,28 @@
     <header id="header"></header>
 
     <!-- Category Selector -->
-    <div id="category-selector">
-      <label for="category">Choisissez une catégorie :</label>
-      <select id="category">
-        <option value="all">Tous les animes</option>
-        <option value="1">Action</option>
-        <option value="2">Comédie</option>
-        <option value="3">Drame</option>
-        <option value="4">Science-fiction</option>
-        <option value="5">Animation</option>
-        <option value="6">Thriller</option>
-        <option value="7">Horreur</option>
-        <option value="8">Aventure</option>
-        <option value="9">Fantaisie</option>
-        <option value="10">Documentaire</option>
+    <div class="category-selector" id="category-selector">
+      <label class="category-selector__title" for="category"
+        >Choisissez une catégorie :</label
+      >
+      <select class="category-selector__options" id="category">
+        <option class="category-selector__option" value="all" selected>
+          Tous les animes
+        </option>
+        <option class="category-selector__option" value="1">Action</option>
+        <option class="category-selector__option" value="2">Comédie</option>
+        <option class="category-selector__option" value="3">Drame</option>
+        <option class="category-selector__option" value="4">
+          Science-fiction
+        </option>
+        <option class="category-selector__option" value="5">Thriller</option>
+        <option class="category-selector__option" value="6">Horreur</option>
+        <option class="category-selector__option" value="7">Aventure</option>
+        <option class="category-selector__option" value="8">Fantaisie</option>
+        <option class="category-selector__option" value="9">
+          Documentaire
+        </option>
+        <option class="category-selector__option" value="10">Romance</option>
       </select>
     </div>
 
@@ -72,8 +80,7 @@
       // Render Navigation Bar
       V.renderNavBar = function (hAbout, hProfil) {
         const header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
-        header.innerHTML = NavBar.format(hProfil);
+        header.innerHTML = NavBar.format(hAbout, hProfil);
       };
 
       // Close Trailer Function
@@ -228,6 +235,12 @@
 
       // Start the Application
       C.start();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const categorySelect = document.getElementById("category");
+        categorySelect.value = "all"; // Définit "Tous les animes" comme sélection par défaut
+      });
     </script>
   </body>
 </html>

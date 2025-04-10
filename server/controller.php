@@ -44,3 +44,12 @@ function addProfilController() {
 
     return addProfil($name, $avatar, $age_restriction);
 }
+
+function modProfilController() {
+    $id = $_REQUEST['id'];
+    $name = $_REQUEST['name'];
+    $avatar = $_REQUEST['avatar'];
+    $age_restriction = $_REQUEST['age_restriction'];
+
+    return modProfil($id, $name, $avatar, $age_restriction);
+}

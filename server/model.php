@@ -64,15 +64,26 @@ function addMovie($name, $year, $length, $description, $director, $id_category, 
     $stmt->bindParam(':min_age', $min_age);
   
     $stmt->execute();
-     $res = $stmt->rowCount(); 
-     var_dump($res);
-    return $res; 
+    return $stmt->rowCount();
 }
 
 function addProfil($name, $avatar, $age_restriction) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'INSERT INTO UserProfil(name, avatar, age_restriction) VALUES(:name, :avatar, :age_restriction)';
     $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':age_restriction', $age_restriction);
+  
+    $stmt->execute();
+    return $stmt->rowCount();
+}
+
+function modProfil($id, $name, $avatar, $age_restriction) {
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = 'UPDATE UserProfil SET name = :name, avatar = :avatar, age_restriction = :age_restriction WHERE id = :id';
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id', $id);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':avatar', $avatar);
     $stmt->bindParam(':age_restriction', $age_restriction);

@@ -1,11 +1,16 @@
 /* Styles pour .content */
+body {
+  background-color: var(--color-black);
+  padding-bottom: 5rem;
+}
+
 .content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, auto));
   margin-top: 1rem;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .content2 {
@@ -14,19 +19,44 @@
   height: auto;
 }
 
-#category-selector {
-  margin: 20px;
-  text-align: center;
+.category-selector {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  font-family: Arial, sans-serif;
 }
 
-#category-selector label {
+.category-selector__title {
   font-size: 1.2rem;
-  margin-right: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-#category-selector select {
-  padding: 5px 10px;
+.category-selector__options {
+  display: flex;
+  width: 80%;
+  text-align: center;
+  max-width: 20rem;
+  padding: 0.5rem;
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-selector__options:hover {
+  border: solid 0.2rem #ffaa00;
+}
+
+.category-selector__option {
+  padding: 0.5rem;
 }

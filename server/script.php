@@ -29,6 +29,10 @@ if ( isset($_REQUEST['todo']) ){
         $data = addProfilController();
       break;
 
+    case 'modProfil':
+        $data = modProfilController();
+      break;
+
     default: 
       echo json_encode('[error] Unknown todo value');
       http_response_code(400); 
