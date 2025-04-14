@@ -40,11 +40,12 @@
 
 .animecard__button--information {
   position: absolute;
+  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
   bottom: 1rem;
   right: 1rem;
   width: 3rem;
   height: 3rem;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -52,13 +53,14 @@
   cursor: pointer;
 }
 
-.animecard__button--like__off {
+.animecard__dislike {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
+  bottom: 1rem;
+  left: 1rem;
   width: 3rem;
   height: 3rem;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.75);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -66,18 +68,27 @@
   cursor: pointer;
 }
 
-.animecard__button--like__on {
+.animecard__like {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
+  bottom: 1rem;
+  left: 5rem;
   width: 3rem;
   height: 3rem;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.75);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.animecard__like--image {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .animecard__button--information:hover + .animecard__information,
