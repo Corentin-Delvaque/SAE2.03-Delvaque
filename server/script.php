@@ -22,6 +22,10 @@ if ( isset($_REQUEST['todo']) ){
       $data = getProfilsController();
       break;
 
+    case 'getFavorie':
+      $data = getFavorieController();
+      break;
+
     case 'addMovie':
         $data = addMovieController();
       break;
@@ -30,8 +34,16 @@ if ( isset($_REQUEST['todo']) ){
         $data = addProfilController();
       break;
 
+    case 'addFavorie':
+        $data = addFavorieController();
+      break;
+
     case 'modProfil':
         $data = modProfilController();
+      break;
+
+    case 'delFavorie':
+        $data = delFavorieController();
       break;
 
     default: 

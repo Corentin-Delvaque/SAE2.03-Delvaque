@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 10 avr. 2025 à 07:19
+-- Généré le : lun. 14 avr. 2025 à 07:06
 -- Version du serveur : 10.11.11-MariaDB-0+deb12u1
 -- Version de PHP : 8.3.19
 
@@ -47,6 +47,18 @@ INSERT INTO `Category` (`id`, `name`) VALUES
 (8, 'Fantaisie'),
 (9, 'Documentaire'),
 (10, 'Romance');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Favorie`
+--
+
+CREATE TABLE `Favorie` (
+  `id` int(11) NOT NULL,
+  `id_profil` int(11) NOT NULL,
+  `id_movie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 -- --------------------------------------------------------
 
@@ -96,10 +108,10 @@ INSERT INTO `Movie` (`id`, `name`, `year`, `length`, `description`, `director`, 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `UserProfil`
+-- Structure de la table `Profil`
 --
 
-CREATE TABLE `UserProfil` (
+CREATE TABLE `Profil` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
@@ -107,10 +119,10 @@ CREATE TABLE `UserProfil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
--- Déchargement des données de la table `UserProfil`
+-- Déchargement des données de la table `Profil`
 --
 
-INSERT INTO `UserProfil` (`id`, `name`, `avatar`, `age_restriction`) VALUES
+INSERT INTO `Profil` (`id`, `name`, `avatar`, `age_restriction`) VALUES
 (1, 'Enfant', 'https://doodleipsum.com/700x700/avatar-1', 10),
 (2, 'Ado', 'https://doodleipsum.com/700x700/avatar-2', 15),
 (3, 'Adulte', 'https://doodleipsum.com/700x700/avatar-3', 18);
@@ -126,6 +138,14 @@ ALTER TABLE `Category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `Favorie`
+--
+ALTER TABLE `Favorie`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_profil` (`id_profil`),
+  ADD KEY `id_movie` (`id_movie`);
+
+--
 -- Index pour la table `Movie`
 --
 ALTER TABLE `Movie`
@@ -133,9 +153,9 @@ ALTER TABLE `Movie`
   ADD KEY `id_category` (`id_category`);
 
 --
--- Index pour la table `UserProfil`
+-- Index pour la table `Profil`
 --
-ALTER TABLE `UserProfil`
+ALTER TABLE `Profil`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -149,20 +169,33 @@ ALTER TABLE `Category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT pour la table `Favorie`
+--
+ALTER TABLE `Favorie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `Movie`
 --
 ALTER TABLE `Movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT pour la table `UserProfil`
+-- AUTO_INCREMENT pour la table `Profil`
 --
-ALTER TABLE `UserProfil`
+ALTER TABLE `Profil`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `Favorie`
+--
+ALTER TABLE `Favorie`
+  ADD CONSTRAINT `favorie_ibfk_1` FOREIGN KEY (`id_profil`) REFERENCES `Profil` (`id`),
+  ADD CONSTRAINT `favorie_ibfk_2` FOREIGN KEY (`id_movie`) REFERENCES `Movie` (`id`);
 
 --
 -- Contraintes pour la table `Movie`

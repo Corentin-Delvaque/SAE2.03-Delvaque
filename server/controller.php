@@ -10,6 +10,11 @@ function getMoviesController($age) {
     return $movies;
 }
 
+function getMoviesFilteredController($age) {
+    $id_category = $_REQUEST['id_category'];
+    return getMoviesFiltered($id_category, "%", "%", $age);
+}
+
 function getProfilsController() {
     $id = $_REQUEST['id'];
     $name = $_REQUEST['name'];
@@ -18,9 +23,11 @@ function getProfilsController() {
     return getProfils($id, $name, $avatar, $age_restriction);
 }
 
-function getMoviesFilteredController($age) {
-    $id_category = $_REQUEST['id_category'];
-    return getMoviesFiltered($id_category, "%", "%", $age);
+function getFavorieController() {
+    $id = $_REQUEST['id'];
+    $id_profil = $_REQUEST['id_profil'];
+    $id_movie = $_REQUEST['id_movie'];
+    return getFavorie($id, $id_profil, $id_movie);
 }
 
 function addMovieController() {
@@ -52,4 +59,19 @@ function modProfilController() {
     $age_restriction = $_REQUEST['age_restriction'];
 
     return modProfil($id, $name, $avatar, $age_restriction);
+}
+
+function addFavorieController() {
+    $id_profil = $_REQUEST['id_profil'];
+    $id_movie = $_REQUEST['id_movie'];
+
+    return addFavorie($id_profil, $id_movie);
+}
+
+function delFavorieController() {
+    $id = $_REQUEST['id'];
+    $id_profil = $_REQUEST['id_profil'];
+    $id_movie = $_REQUEST['id_movie'];
+
+    return delFavorie($id, $id_profil, $id_movie);
 }
