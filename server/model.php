@@ -5,11 +5,12 @@ define("DBNAME", "delvaque1");
 define("DBLOGIN", "delvaque1");
 define("DBPWD", "delvaque1");
 
-function getMovies() {
+function getMovies($age) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
-        $sql = "SELECT * FROM Movie";
+        $sql = "SELECT * FROM Movie WHERE min_age <= :age";
         $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':age', $age, PDO::PARAM_INT);
         $stmt->execute();
         $res = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $res;
@@ -31,14 +32,15 @@ function getProfils() {
     }
 }
 
-function getMoviesFiltered($id_category, $name, $image) {
+function getMoviesFiltered($id_category, $name, $image, $age) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
-        $sql = "SELECT * FROM Movie WHERE id_category = :id_category AND name LIKE :name AND image LIKE :image";
+        $sql = "SELECT * FROM Movie WHERE id_category = :id_category AND name LIKE :name AND image LIKE :image AND min_age <= :age";
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':id_category', $id_category);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':age', $age, PDO::PARAM_INT);
         $stmt->execute();
         $res = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $res;
@@ -46,8 +48,6 @@ function getMoviesFiltered($id_category, $name, $image) {
         return false;
     }
 }
-
-
 
 function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);

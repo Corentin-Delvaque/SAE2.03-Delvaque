@@ -2,8 +2,8 @@
 
 require("model.php");
 
-function getMoviesController() {
-    $movies = getMovies();
+function getMoviesController($age) {
+    $movies = getMovies($age);
     if ($movies === false) {
         return false;
     }
@@ -18,9 +18,9 @@ function getProfilsController() {
     return getProfils($id, $name, $avatar, $age_restriction);
 }
 
-function getMoviesFilteredController() {
+function getMoviesFilteredController($age) {
     $id_category = $_REQUEST['id_category'];
-    return getMoviesFiltered($id_category, "%", "%");
+    return getMoviesFiltered($id_category, "%", "%", $age);
 }
 
 function addMovieController() {

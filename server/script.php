@@ -7,14 +7,15 @@ if ( isset($_REQUEST['todo']) ){
   header('Content-Type: application/json');
 
   $todo = $_REQUEST['todo'];
+  $age = isset($_REQUEST['age']) ? intval($_REQUEST['age']) : 0;
 
   switch($todo){
     case 'getMovies':
-      $data = getMoviesController();
+      $data = getMoviesController($age);
       break;
 
     case 'getMoviesFiltered':
-      $data = getMoviesFilteredController();
+      $data = getMoviesFilteredController($age);
       break;
 
     case 'getProfils':
