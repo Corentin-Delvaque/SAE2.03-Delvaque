@@ -69,9 +69,8 @@ function addFavorieController() {
 }
 
 function delFavorieController() {
-    $id = $_REQUEST['id'];
     $id_profil = $_REQUEST['id_profil'];
     $id_movie = $_REQUEST['id_movie'];
 
-    return delFavorie($id, $id_profil, $id_movie);
+    return delFavorie($id_profil, $id_movie);
 }

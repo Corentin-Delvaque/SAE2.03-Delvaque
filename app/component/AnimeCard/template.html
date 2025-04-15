@@ -24,14 +24,22 @@
       <p class="animecard__information--min-age">
         Âge minimum : {{Min_Age}} ans
       </p>
-      <button class="animecard__like">
+      <button
+        class="animecard__like"
+        data-id="{{id}}"
+        onclick="handleLike(this)"
+      >
         <img
           src="../server/images/like.svg"
           class="animecard__like--image"
           alt="Like sur l'anime : {{Name}}"
         />
       </button>
-      <button class="animecard__dislike">
+      <button
+        class="animecard__dislike"
+        data-id="{{id}}"
+        onclick="handleDislike(this)"
+      >
         <img
           src="../server/images/dislike.svg"
           class="animecard__like--image"

@@ -8,16 +8,36 @@ DataFavorie.getFavorie = async function () {
   return favories;
 };
 
-DataFavorie.addFavorie = async function () {
-  let response = await fetch(HOST_URL + "/server/script.php?todo=addFavorie");
-  let favories = await response.json();
-  return favories;
+DataFavorie.addFavorie = async function (id_profil, id_movie) {
+  const formData = new FormData();
+  formData.append("id_profil", id_profil);
+  formData.append("id_movie", id_movie);
+
+  const response = await fetch(
+    HOST_URL + "/server/script.php?todo=addFavorie",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  return response.ok;
 };
 
-DataFavorie.delFavorie = async function () {
-  let response = await fetch(HOST_URL + "/server/script.php?todo=delFavorie");
-  let favories = await response.json();
-  return favories;
+DataFavorie.delFavorie = async function (id_profil, id_movie) {
+  const formData = new FormData();
+  formData.append("id_profil", id_profil);
+  formData.append("id_movie", id_movie);
+
+  const response = await fetch(
+    HOST_URL + "/server/script.php?todo=delFavorie",
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  return response.ok;
 };
 
 export { DataFavorie };

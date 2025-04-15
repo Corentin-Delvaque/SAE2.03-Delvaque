@@ -116,14 +116,15 @@ function addFavorie($id_profil, $id_movie) {
     return $stmt->rowCount();
 }
 
-function delFavorie($id, $id_profil, $id_movie) {
-    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = 'DELETE FROM Favorie WHERE id = :id AND id_profil = :id_profil AND id_movie = :id_movie';
-    $stmt = $cnx->prepare($sql);
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':id_profil', $id_profil);
-    $stmt->bindParam(':id_movie', $id_movie);
-  
-    $stmt->execute();
-    return $stmt->rowCount();
+function delFavorie($id_profil, $id_movie) {
+    try {
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
+        $sql = "DELETE FROM Favorie WHERE id_profil = :id_profil AND id_movie = :id_movie";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id_profil', $id_profil, PDO::PARAM_INT);
+        $stmt->bindParam(':id_movie', $id_movie, PDO::PARAM_INT);
+        return $stmt->execute();
+    } catch (Exception $e) {
+        return false;
+    }
 }

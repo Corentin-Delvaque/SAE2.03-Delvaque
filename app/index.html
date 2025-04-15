@@ -62,6 +62,9 @@
       let selectedAge = 0;
       let selectedCategory = "all"; // Variable globale pour la catégorie sélectionnée
 
+      // Variable globale pour stocker l'ID du profil sélectionné
+      window.selectedProfilId = null;
+
       // Global Controller Object
       window.C = {};
 
@@ -221,6 +224,13 @@
           });
 
           ProfilSelector.appendChild(cardElement);
+        });
+
+        // Lorsqu'un profil est sélectionné, mettez à jour cette variable
+        document.querySelectorAll(".profil-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            window.selectedProfilId = card.value; // Assurez-vous que `value` contient l'ID du profil
+          });
         });
       };
 
