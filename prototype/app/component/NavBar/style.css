@@ -72,7 +72,8 @@
 }
 
 .sous:hover,
-.sous:focus {
+.sous:focus,
+.sous:active {
   display: block;
 }
 
