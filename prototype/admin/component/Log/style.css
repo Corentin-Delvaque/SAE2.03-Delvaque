@@ -1,20 +1,27 @@
 .log {
   display: flex;
   align-items: center;
+
+  margin: 1rem auto;
+
   width: 30rem;
   height: 8rem;
   padding: 1rem 1rem 1rem 1.5rem;
-  margin: 1rem auto;
-  background-color: var(--color-bg);
   border-style: solid;
-  border-color: var(--color-fg);
+  border-color: var(--color-gray);
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
+  background-color: var(--color-noir);
+  box-shadow: 0 4px 6px var(--color-noir-50);
+
   .log__list {
+    overflow-y: scroll;
+
+    font-family: var(--ff-sans);
     font-size: smaller;
     color: var(--color-accent);
-    overflow-y: scroll;
+
     .last {
       animation: fondu-en-entree 1s ease-in-out;
     }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>SAE2.03 APP</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAE2.03 APP</title>
     <link rel="stylesheet" href="./css/base.css" />
   </head>
 
@@ -39,7 +39,6 @@
 
     <!-- Main Content Section -->
     <section class="content" id="content"></section>
-    <section class="content2" id="content2"></section>
 
     <!-- Trailer Modal -->
     <div id="iframeContainer" onclick="closeTrailer()">
@@ -56,28 +55,23 @@
       import { NavBar } from "./component/NavBar/script.js";
       import { AnimeCard } from "./component/AnimeCard/script.js";
       import { ProfilCard } from "./component/ProfilCard/script.js";
-      import { CategorySection } from "./component/CategorySection/script.js";
       import { FavorieCard } from "./component/FavorieCard/script.js";
 
-      // Variable globale pour stocker l'âge du profil sélectionné
+      // Global Variables
       let selectedAge = 0;
-      let selectedCategory = "all"; // Variable globale pour la catégorie sélectionnée
+      let selectedCategory = "all";
 
-      // Variable globale pour stocker l'ID du profil sélectionné
-      window.selectedProfilId = null;
-
-      // Global Controller Object
       window.C = {};
 
       // About Handler
-      C.handlerAbout = function () {
+      C.handlerAbout = () => {
         alert(
           "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
         );
       };
 
       // Application Start Function
-      C.start = async function () {
+      C.start = async () => {
         V.renderNavBar("C.handlerAbout()");
         await V.renderAnimeCards(selectedAge);
         await V.renderProfilCards();
@@ -88,36 +82,32 @@
       window.V = {};
 
       // Render Navigation Bar
-      V.renderNavBar = function (hAbout, hProfil) {
+      V.renderNavBar = (hAbout, hProfil) => {
         const header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout, hProfil);
       };
 
       // Close Trailer Function
-      window.closeTrailer = function () {
+      window.closeTrailer = () => {
         const container = document.getElementById("iframeContainer");
         const iframe = document.getElementById("trailerIframe");
-
         iframe.src = "";
         container.style.display = "none";
       };
 
-      // Définir showTrailer comme une fonction globale
-      window.showTrailer = function (url) {
+      // Show Trailer Function
+      window.showTrailer = (url) => {
         const container = document.getElementById("iframeContainer");
         const iframe = document.getElementById("trailerIframe");
-
-        // Ajouter le paramètre autoplay à l'URL
         const autoplayUrl = url.includes("?")
           ? `${url}&autoplay=1`
           : `${url}?autoplay=1`;
-
         iframe.src = autoplayUrl;
         container.style.display = "flex";
       };
 
       // Render Anime Cards
-      V.renderAnimeCards = async function (age) {
+      V.renderAnimeCards = async (age) => {
         const content = document.querySelector("#content");
         const movies = await DataMovie.getMovies(age);
 
@@ -127,7 +117,7 @@
           return;
         }
 
-        content.innerHTML = ""; // Réinitialiser le contenu
+        content.innerHTML = "";
         movies.forEach((movie) => {
           const cardHTML = AnimeCard.format(
             movie.trailer,
@@ -143,7 +133,7 @@
           content.innerHTML += cardHTML;
         });
 
-        // Réattacher les gestionnaires d'événements pour les trailers
+        // Reattach event listeners for trailers
         document.querySelectorAll(".trailer-trigger").forEach((el) => {
           el.addEventListener("click", () => {
             const url = el.getAttribute("data-trailer");
@@ -153,7 +143,7 @@
       };
 
       // Render Profil Cards
-      V.renderProfilCards = async function () {
+      V.renderProfilCards = async () => {
         const ProfilSelector = document.querySelector("#ProfilSelector");
         const profils = await DataProfil.getProfils();
 
@@ -163,7 +153,7 @@
           return;
         }
 
-        ProfilSelector.innerHTML = ""; // Réinitialiser le contenu
+        ProfilSelector.innerHTML = "";
         profils.forEach((profil) => {
           const cardHTML = ProfilCard.format(
             profil.name,
@@ -177,68 +167,62 @@
 
           cardElement.addEventListener("click", async () => {
             selectedAge = profil.age_restriction || 0;
-            window.selectedProfilId = profil.id; // Mettre à jour l'ID du profil sélectionné
+            window.selectedProfilId = profil.id;
 
-            await V.renderFavorieList(); // Mettre à jour la liste des favoris
-
-            const content = document.querySelector("#content");
-            const content2 = document.querySelector("#content2");
-
-            content.innerHTML = "";
-            content2.innerHTML = "";
-
-            if (selectedCategory === "all") {
-              // Afficher tous les animes pour l'âge sélectionné
-              await V.renderAnimeCards(selectedAge);
-            } else {
-              // Afficher les animes filtrés par catégorie et âge
-              const movies = await DataMovie.getMoviesFiltered(
-                selectedCategory,
-                selectedAge
-              );
-
-              if (movies.length === 0) {
-                content2.innerHTML = `<p>Aucun film disponible pour la catégorie sélectionnée et votre tranche d'âge.</p>`;
-                return;
-              }
-
-              movies.forEach((movie) => {
-                const cardHTML = AnimeCard.format(
-                  movie.trailer,
-                  movie.image,
-                  movie.description,
-                  movie.director,
-                  movie.year,
-                  movie.length,
-                  movie.min_age,
-                  movie.name,
-                  movie.id
-                );
-                content2.innerHTML += cardHTML;
-              });
-
-              // Réattacher les gestionnaires d'événements pour les trailers
-              document.querySelectorAll(".trailer-trigger").forEach((el) => {
-                el.addEventListener("click", () => {
-                  const url = el.getAttribute("data-trailer");
-                  showTrailer(url);
-                });
-              });
-            }
+            await V.renderFavorieList();
+            await V.updateContentForProfil();
           });
 
           ProfilSelector.appendChild(cardElement);
         });
-
-        // Lorsqu'un profil est sélectionné, mettez à jour cette variable
-        document.querySelectorAll(".profil-card").forEach((card) => {
-          card.addEventListener("click", () => {
-            window.selectedProfilId = card.value; // Assurez-vous que `value` contient l'ID du profil
-          });
-        });
       };
 
-      V.renderFavorieList = async function () {
+      // Update Content for Profil
+      V.updateContentForProfil = async () => {
+        const content = document.querySelector("#content");
+
+        content.innerHTML = "";
+
+        if (selectedCategory === "all") {
+          await V.renderAnimeCards(selectedAge);
+        } else {
+          const movies = await DataMovie.getMoviesFiltered(
+            selectedCategory,
+            selectedAge
+          );
+
+          if (movies.length === 0) {
+            content.innerHTML = `<p>Aucun film disponible pour la catégorie sélectionnée et votre tranche d'âge.</p>`;
+            return;
+          }
+
+          movies.forEach((movie) => {
+            const cardHTML = AnimeCard.format(
+              movie.trailer,
+              movie.image,
+              movie.description,
+              movie.director,
+              movie.year,
+              movie.length,
+              movie.min_age,
+              movie.name,
+              movie.id
+            );
+            content.innerHTML += cardHTML;
+          });
+
+          // Reattach event listeners for trailers
+          document.querySelectorAll(".trailer-trigger").forEach((el) => {
+            el.addEventListener("click", () => {
+              const url = el.getAttribute("data-trailer");
+              showTrailer(url);
+            });
+          });
+        }
+      };
+
+      // Render Favorie List
+      V.renderFavorieList = async () => {
         const FavorieList = document.querySelector("#FavorieList");
         const profilId = window.selectedProfilId;
 
@@ -257,18 +241,17 @@
           return;
         }
 
-        FavorieList.innerHTML = ""; // Réinitialiser la liste des favoris
+        FavorieList.innerHTML = "";
         profilFavories.forEach((favorie) => {
-          const favorieHTML = FavorieCard.format(favorie.name); // Utiliser favorie.name
+          const favorieHTML = FavorieCard.format(favorie.name);
           FavorieList.innerHTML += favorieHTML;
         });
       };
 
       // Render Category Sections
-      V.renderCategorySections = async function () {
-        const content2 = document.querySelector("#content2");
+      V.renderCategorySections = async () => {
+        const content = document.querySelector("#content");
 
-        // Liste des catégories (id et nom)
         const categories = [
           { id: 1, name: "Action" },
           { id: 2, name: "Comédie" },
@@ -278,17 +261,16 @@
           { id: 6, name: "Thriller" },
           { id: 7, name: "Horreur" },
           { id: 8, name: "Aventure" },
-          { id: 9, name: "Fantaisiee" },
+          { id: 9, name: "Fantaisie" },
           { id: 10, name: "Documentaire" },
         ];
 
-        // Générer les sections pour chaque catégorie
         for (let category of categories) {
           const sectionHTML = await CategorySection.format(
             category.id,
             category.name
           );
-          content2.innerHTML += sectionHTML;
+          content.innerHTML += sectionHTML;
         }
       };
 
@@ -296,64 +278,19 @@
       document
         .getElementById("category")
         .addEventListener("change", async (event) => {
-          selectedCategory = event.target.value; // Mettre à jour la variable globale
-          const content = document.querySelector("#content"); // Section principale
-          const content2 = document.querySelector("#content2"); // Section des catégories
-
-          content.innerHTML = ""; // Efface les films de la section principale
-          content2.innerHTML = ""; // Efface les sections de catégories
-
-          if (selectedCategory === "all") {
-            // Afficher tous les animes
-            await V.renderAnimeCards(selectedAge);
-          } else {
-            // Afficher les animes filtrés par catégorie
-            const categoryName = document.querySelector(
-              `#category option[value="${selectedCategory}"]`
-            ).textContent;
-
-            const movies = await DataMovie.getMoviesFiltered(
-              selectedCategory,
-              selectedAge
-            );
-
-            if (movies.length === 0) {
-              content2.innerHTML = `<p>Aucun film disponible pour la catégorie "${categoryName}" et votre tranche d'âge.</p>`;
-              return;
-            }
-
-            movies.forEach((movie) => {
-              const cardHTML = AnimeCard.format(
-                movie.trailer,
-                movie.image,
-                movie.description,
-                movie.director,
-                movie.year,
-                movie.length,
-                movie.min_age,
-                movie.name,
-                movie.id
-              );
-              content2.innerHTML += cardHTML;
-            });
-
-            // Réattacher les gestionnaires d'événements pour les trailers
-            document.querySelectorAll(".trailer-trigger").forEach((el) => {
-              el.addEventListener("click", () => {
-                const url = el.getAttribute("data-trailer");
-                showTrailer(url);
-              });
-            });
-          }
+          selectedCategory = event.target.value;
+          await V.updateContentForProfil();
         });
 
       // Start the Application
       C.start();
     </script>
+
     <script>
+      // Set Default Category to 'All'
       document.addEventListener("DOMContentLoaded", () => {
         const categorySelect = document.getElementById("category");
-        categorySelect.value = "all"; // Définit "Tous les animes" comme sélection par défaut
+        categorySelect.value = "all";
       });
     </script>
   </body>

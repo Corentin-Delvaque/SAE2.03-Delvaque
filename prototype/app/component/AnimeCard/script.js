@@ -1,6 +1,5 @@
 import { DataFavorie } from "../../data/dataFavorie.js";
 
-// Chargement du template HTML
 const templateFile = await fetch("./component/AnimeCard/template.html");
 const template = await templateFile.text();
 
@@ -44,7 +43,6 @@ AnimeCard.format = function (
   return html;
 };
 
-// Gestion du bouton "Like"
 window.handleLike = async function (button) {
   const movieId = button.getAttribute("data-id");
   const profilId = window.selectedProfilId;
@@ -72,7 +70,6 @@ window.handleLike = async function (button) {
   );
 };
 
-// Gestion du bouton "Dislike"
 window.handleDislike = async function (button) {
   const movieId = button.getAttribute("data-id");
   const profilId = window.selectedProfilId;

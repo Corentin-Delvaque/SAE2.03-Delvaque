@@ -1,24 +1,32 @@
 .animecard {
-  width: 100%; /* Laissez la grille gérer la largeur */
-  max-width: 18rem; /* Limitez la largeur maximale */
-  height: auto; /* Ajustez automatiquement la hauteur */
+  display: block;
+
+  width: 100%;
+  max-width: 18rem;
+  height: auto;
   overflow: hidden;
   border-radius: 1rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  outline: #ffcc0080 solid 0.2rem;
+
+  background-color: var(--color-noir);
+  outline: var(--color-jaune-fonce) solid 0.2rem;
+
+  transition: transform 0.3s ease-in-out;
 }
 
 .animecard:hover {
   transform: scale(1.025);
-  transition: transform 0.3s ease-in-out;
-  outline: #ffcc00ff solid 0.2rem;
-  .animecard__title {
-    color: #fff;
-  }
+  outline: var(--color-jaune) solid 0.2rem;
+}
+
+.animecard:hover .animecard__title {
+  color: var(--color-blanche);
 }
 
 .animecard__image {
+  display: block;
+
   position: relative;
+
   width: 100%;
   height: 25rem;
   border-radius: 1rem 1rem 0 0;
@@ -26,69 +34,60 @@
 }
 
 .animecard__image--affiche {
+  display: block;
+
   width: 100%;
   height: 100%;
 }
 
 .animecard__image--information {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.animecard__button--information,
+.animecard__like,
+.animecard__dislike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 1rem;
+
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+
+  border: var(--color-gray) solid 0.2rem;
+  background-color: var(--color-noir-50);
+
+  cursor: pointer;
 }
 
 .animecard__button--information {
-  position: absolute;
-  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
-  bottom: 1rem;
   right: 1rem;
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.animecard__dislike {
-  position: absolute;
-  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
-  bottom: 1rem;
-  left: 1rem;
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.75);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
 
 .animecard__like {
-  position: absolute;
-  border: rgba(128, 128, 128, 0.5) solid 0.2rem;
-  bottom: 1rem;
   left: 5rem;
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(0, 0, 0, 0.75);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
 
-.animecard__like--image {
-  width: 90%;
-  height: 90%;
+.animecard__dislike {
+  left: 1rem;
+}
+
+.animecard__button--image {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 90%;
+  height: 90%;
 }
 
 .animecard__button--information:hover + .animecard__information,
@@ -96,61 +95,91 @@
   display: block;
 }
 
-.animecard__content {
-  background-color: rgba(0, 0, 0, 1);
-  color: white;
+.animecard__information {
+  display: none;
+  flex-direction: column;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem 1rem 0 0;
+
   padding: 1rem;
+
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+
+  background-color: var(--color-noir-80);
+  color: var(--color-blanche);
+
+  gap: 1rem;
+}
+
+.animecard__information:hover {
+  display: flex;
+}
+
+.animecard__content {
+  display: block;
+
+  width: 100%;
   text-align: center;
+
+  padding: 1rem;
   border-radius: 0 0 1rem 1rem;
+
+  background-color: var(--color-noir);
+  color: var(--color-blanche);
 }
 
 .animecard__title {
-  color: #ccc;
-  font-size: 1.5rem;
+  display: block;
+
   margin: 0;
+
+  font-family: var(--ff-sans);
+  font-size: 1.3rem;
+
+  color: var(--color-blanche-froid);
 }
 
 #iframeContainer {
   display: none;
+  align-items: center;
+  justify-content: center;
+
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  align-items: center;
-  justify-content: center;
+
+  background: var(--color-noir-80);
 }
 
 iframe {
+  display: block;
+
   width: 75%;
   height: 75%;
   border: none;
 }
 
 #closeBtn {
+  display: block;
+
   position: absolute;
   top: 1rem;
   right: 1rem;
+
+  font-family: var(--ff-sans);
   font-size: 2rem;
-  color: white;
+  color: var(--color-blanche);
+
   cursor: pointer;
-}
-
-.animecard__information {
-  display: none;
-  position: absolute;
-  border-radius: 1rem 1rem 0 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 1rem;
-  z-index: 10;
-}
-
-.animecard__information:hover {
-  display: block;
 }

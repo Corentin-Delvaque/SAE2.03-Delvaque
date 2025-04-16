@@ -1,13 +1,10 @@
-let templateFile = await fetch("./component/NavBar/template.html");
-let template = await templateFile.text();
+const templateFile = await fetch("./component/NavBar/template.html");
+const template = await templateFile.text();
 
-let NavBar = {};
+const NavBar = {};
 
-NavBar.format = function (hAbout, hProfil) {
-  let html = template;
-  html = html.replace("{{hAbout}}", hAbout);
-  html = html.replace("{{hProfil}}", hProfil);
-  return html;
+NavBar.format = function (hAbout) {
+  return template.replace("{{hAbout}}", hAbout);
 };
 
 export { NavBar };

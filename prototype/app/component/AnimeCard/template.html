@@ -2,17 +2,19 @@
   <div class="animecard__image">
     <img
       src="../server/images/{{Affiche}}"
+      alt="Affiche de l'anime : {{Name}}"
       class="animecard__image--affiche trailer-trigger"
       data-trailer="{{Trailer}}"
-      alt="Affiche de l'anime : {{Name}}"
     />
+
     <button class="animecard__button--information">
       <img
         src="../server/images/information.svg"
-        class="animecard__image--information"
         alt="Information sur l'anime : {{Name}}"
+        class="animecard__button--image"
       />
     </button>
+
     <div class="animecard__information">
       <h2 class="animecard__information--title">{{Name}}</h2>
       <p class="animecard__information--director">Réalisateur : {{Director}}</p>
@@ -24,30 +26,35 @@
       <p class="animecard__information--min-age">
         Âge minimum : {{Min_Age}} ans
       </p>
-      <button
-        class="animecard__like"
-        data-id="{{id}}"
-        onclick="handleLike(this)"
-      >
-        <img
-          src="../server/images/like.svg"
-          class="animecard__like--image"
-          alt="Like sur l'anime : {{Name}}"
-        />
-      </button>
-      <button
-        class="animecard__dislike"
-        data-id="{{id}}"
-        onclick="handleDislike(this)"
-      >
-        <img
-          src="../server/images/dislike.svg"
-          class="animecard__like--image"
-          alt="Dislike sur l'anime : {{Name}}"
-        />
-      </button>
+
+      <div class="animecard__actions">
+        <button
+          class="animecard__like"
+          data-id="{{id}}"
+          onclick="handleLike(this)"
+        >
+          <img
+            src="../server/images/like.svg"
+            alt="Like sur l'anime : {{Name}}"
+            class="animecard__button--image"
+          />
+        </button>
+
+        <button
+          class="animecard__dislike"
+          data-id="{{id}}"
+          onclick="handleDislike(this)"
+        >
+          <img
+            src="../server/images/dislike.svg"
+            alt="Dislike sur l'anime : {{Name}}"
+            class="animecard__button--image"
+          />
+        </button>
+      </div>
     </div>
   </div>
+
   <div class="animecard__content trailer-trigger" data-trailer="{{Trailer}}">
     <h1 class="animecard__title">{{Name}}</h1>
   </div>
