@@ -1,75 +1,76 @@
-/* Style général pour le formulaire */
 .newProfil {
   display: flex;
   flex-direction: column;
-  width: 37rem;
+
   margin: 1rem auto;
+  width: 37rem;
   padding: 1rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+
+  border: 1px solid var(--color-blanche-froid);
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
   font-family: Arial, sans-serif;
+
+  background-color: var(--color-blanche);
+  box-shadow: 0 4px 6px var(--color-noir-50);
 }
 
 .newProfil__title {
+  margin-bottom: 1.25rem;
+
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
-  color: #333;
+
+  color: var(--color-noir);
 }
 
 .newProfil__form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+
+  gap: 1rem;
 }
 
 .newProfil__form input,
 .newProfil__form select {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+  padding: 1rem;
+  border: 1px solid var(--color-jaune-fonce);
   border-radius: 4px;
+
+  font-size: 1rem;
+
   outline: none;
+
   transition: border-color 0.3s ease;
 }
 
 .newProfil__form input:focus,
 .newProfil__form select:focus {
-  border-color: #007bff;
+  border-color: var(--color-jaune);
 }
 
 .newProfil__form input[type="button"] {
-  background-color: #007bff;
-  color: #fff;
   border: none;
-  cursor: pointer;
+
   font-weight: bold;
+  color: var(--color-blanche);
+  background-color: var(--color-jaune-fonce);
+
+  cursor: pointer;
+
   transition: background-color 0.3s ease;
 }
 
 .newProfil__form input[type="button"]:hover {
-  background-color: #0056b3;
+  background-color: var(--color-jaune);
 }
 
 .newProfil__form select {
-  background-color: #fff;
+  background-color: var(--color-blanche);
 }
 
 .newProfil__form input::placeholder {
-  color: #aaa;
+  color: var(--color-gray);
   font-style: italic;
-}
-
-/* Ajout d'un style pour les messages d'erreur ou d'information */
-.newProfil__form .error {
-  color: red;
-  font-size: 0.9rem;
-}
-
-.newProfil__form .success {
-  color: green;
-  font-size: 0.9rem;
 }

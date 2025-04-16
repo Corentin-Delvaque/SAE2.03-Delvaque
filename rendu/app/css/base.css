@@ -1,12 +1,10 @@
-@layer reset, variables, components, utilities;
+@layer reset, variables, components;
 
 @import "./reset.css" layer(reset);
 @import "./variables.css" layer(variables);
-@import "./utilities.css" layer(utilities);
 
 @import "./index.css" layer(components);
 @import "../component/NavBar/style.css" layer(components);
 @import "../component/AnimeCard/style.css" layer(components);
 @import "../component/ProfilCard/style.css" layer(components);
-@import "../component/CategorySection/style.css" layer(components);
 @import "../component/FavorieCard/style.css" layer(components);
