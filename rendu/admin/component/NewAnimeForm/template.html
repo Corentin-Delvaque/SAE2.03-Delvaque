@@ -1,0 +1,73 @@
+<div class="newAnime">
+  <h2 class="newAnime__title"># Ajouter des films à la base de donnée</h2>
+  <form class="newAnime__form" name="newAnime__form" id="newAnime__form">
+    Saisir le titre du film:
+    <input required type="text" name="name" placeholder="Titre" />
+    <input
+      required
+      type="number"
+      name="year"
+      min="1900"
+      max="2100"
+      step="1"
+      placeholder="Saisir l'année de sortie"
+    />
+    <input
+      required
+      type="number"
+      name="length"
+      min="0"
+      max="1000"
+      step="1"
+      placeholder="Saisir la durée du film en minute"
+    />
+    <input
+      required
+      type="text"
+      name="description"
+      placeholder="Saisir la description"
+    />
+    <input
+      required
+      type="text"
+      name="director"
+      placeholder="Saisir le nom du réalisateur"
+    />
+    <select name="id_category">
+      <option value="1">Action</option>
+      <option value="2">Comédie</option>
+      <option value="3">Drame</option>
+      <option value="4">Science-fiction</option>
+      <option value="5">Thriller</option>
+      <option value="6">Horreur</option>
+      <option value="7">Aventure</option>
+      <option value="8">Fantaisie</option>
+      <option value="9">Documentaire</option>
+      <option value="10">Romance</option>
+    </select>
+
+    <input
+      required
+      type="text"
+      name="image"
+      placeholder="Saisir le nom du dossier image du film"
+    />
+    <input
+      required
+      type="url"
+      name="trailer"
+      placeholder="Saisir le lien Youtube du trailler"
+    />
+    <input
+      required
+      type="number"
+      name="min_age"
+      min="0"
+      max="100"
+      step="1"
+      placeholder="Saisir l'age minimum autorisé"
+    />
+
+    <input onclick="{{handler}}" type="button" value="Update" name="todo" />
+  </form>
+</div>

@@ -1,0 +1,75 @@
+/* Style général pour le formulaire */
+.newProfil {
+  display: flex;
+  flex-direction: column;
+  width: 37rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.newProfil__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.newProfil__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.newProfil__form input,
+.newProfil__form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.newProfil__form input:focus,
+.newProfil__form select:focus {
+  border-color: #007bff;
+}
+
+.newProfil__form input[type="button"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.newProfil__form input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+.newProfil__form select {
+  background-color: #fff;
+}
+
+.newProfil__form input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Ajout d'un style pour les messages d'erreur ou d'information */
+.newProfil__form .error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.newProfil__form .success {
+  color: green;
+  font-size: 0.9rem;
+}

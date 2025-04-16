@@ -1,0 +1,28 @@
+<div class="newProfil">
+  <h2 class="newProfil__title"># Ajouter un nouveau profil</h2>
+  <form class="newProfil__form" name="newProfil__form" id="newProfil__form">
+    <label for="name">Nom du profil :</label>
+    <input required type="text" name="name" placeholder="Nom du profil" />
+
+    <label for="avatar">Lien de l'avatar :</label>
+    <input
+      required
+      type="filename"
+      name="avatar"
+      placeholder="Lien de l'avatar"
+    />
+
+    <label for="age_restriction">Restriction d'âge :</label>
+    <input
+      required
+      type="number"
+      name="age_restriction"
+      min="0"
+      max="18"
+      step="1"
+      placeholder="Restriction d'âge"
+    />
+
+    <input onclick="{{handler}}" type="button" value="Ajouter" />
+  </form>
+</div>
