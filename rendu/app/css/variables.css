@@ -10,17 +10,13 @@
   --color-jaune: #ffcc00;
   --color-jaune-fonce: #b8860b;
   --color-gray: #c7c7ca;
-  --color-gray-fonce: #0e0f17;
+  --color-gray-fonce: #0e0f17e6;
+  --color-gray-fonce2: #1a1c28;
   --color-green: #03ddbd;
-  --gradient-rainbow: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #00ffff,
-    #0000ff,
-    #8b00ff
+  --color-gradient-gris-noir: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 1)
   );
 
   --ff-sans: "DIN Next LT W04 Regular", sans-serif;

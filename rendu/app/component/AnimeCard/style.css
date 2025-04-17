@@ -8,18 +8,16 @@
   border-radius: 1rem;
 
   background-color: var(--color-noir);
-  outline: var(--color-jaune-fonce) solid 0.2rem;
+  border: var(--color-gray-fonce2) solid 0.2rem;
 
   transition: transform 0.3s ease-in-out;
 }
 
 .animecard:hover {
-  transform: scale(1.025);
-  outline: var(--color-jaune) solid 0.2rem;
-}
-
-.animecard:hover .animecard__title {
-  color: var(--color-blanche);
+  transform: scale(1.05);
+  .animecard__information {
+    display: flex;
+  }
 }
 
 .animecard__image {
@@ -40,16 +38,6 @@
   height: 100%;
 }
 
-.animecard__image--information {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100%;
-}
-
-.animecard__button--information,
 .animecard__like,
 .animecard__dislike {
   display: flex;
@@ -63,14 +51,10 @@
   height: 3rem;
   border-radius: 50%;
 
-  border: var(--color-gray) solid 0.2rem;
+  border: var(--color-green) solid 0.2rem;
   background-color: var(--color-noir-50);
 
   cursor: pointer;
-}
-
-.animecard__button--information {
-  right: 1rem;
 }
 
 .animecard__like {
@@ -88,11 +72,6 @@
 
   width: 90%;
   height: 90%;
-}
-
-.animecard__button--information:hover + .animecard__information,
-.animecard__button--information:focus + .animecard__information {
-  display: block;
 }
 
 .animecard__information {
@@ -113,38 +92,18 @@
   font-family: var(--ff-sans);
   font-size: 1rem;
 
-  background-color: var(--color-noir-80);
+  background: var(--color-gradient-gris-noir);
   color: var(--color-blanche);
 
   gap: 1rem;
 }
 
-.animecard__information:hover {
-  display: flex;
+.important {
+  font-family: var(--ff-sans-bold);
 }
 
-.animecard__content {
-  display: block;
-
-  width: 100%;
-  text-align: center;
-
-  padding: 1rem;
-  border-radius: 0 0 1rem 1rem;
-
-  background-color: var(--color-noir);
-  color: var(--color-blanche);
-}
-
-.animecard__title {
-  display: block;
-
-  margin: 0;
-
-  font-family: var(--ff-sans);
-  font-size: 1.3rem;
-
-  color: var(--color-blanche-froid);
+.colored {
+  color: var(--color-green);
 }
 
 #iframeContainer {
