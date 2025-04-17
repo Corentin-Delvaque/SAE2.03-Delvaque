@@ -3,7 +3,7 @@ let template = await templateFile.text();
 
 let ProfilCard = {};
 
-ProfilCard.format = function (Name, Avatar, Age_Restriction, id) {
+ProfilCard.format = function (Name, Age_Restriction, id) {
   let html = template;
 
   html = html.replace("{{Name}}", Name);

@@ -72,9 +72,17 @@
         alert("Cette fonctionnalité n'est pas encore implémentée.");
       };
 
+      C.handlerHelp = () => {
+        alert("En cas de problème, veuillez utiliser le navigateur Firefox.");
+      };
+
       // Application Start Function
       C.start = async () => {
-        V.renderNavBar("C.handlerAbout()", "C.handlerRecherche()");
+        V.renderNavBar(
+          "C.handlerAbout()",
+          "C.handlerRecherche()",
+          "C.handlerHelp()"
+        );
         await V.renderAnimeCards(selectedAge);
         await V.renderProfilCards();
         await V.renderFavorieList();
@@ -84,9 +92,9 @@
       window.V = {};
 
       // Render Navigation Bar
-      V.renderNavBar = (hAbout, hProfil) => {
+      V.renderNavBar = (hAbout, hProfil, hHelp) => {
         const header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout, hProfil);
+        header.innerHTML = NavBar.format(hAbout, hProfil, hHelp);
       };
 
       // Close Trailer Function
@@ -151,32 +159,28 @@
 
         if (profils.length === 0) {
           ProfilSelector.innerHTML =
-            "<p>Aucun profil disponible pour le moment.</p>";
+            "<option disabled>Aucun profil disponible pour le moment.</option>";
           return;
         }
 
         ProfilSelector.innerHTML = "";
         profils.forEach((profil) => {
-          const cardHTML = ProfilCard.format(
+          const optionHTML = ProfilCard.format(
             profil.name,
-            profil.avatar,
             profil.age_restriction,
             profil.id
           );
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = cardHTML;
-          const cardElement = tempDiv.firstChild;
-
-          cardElement.addEventListener("click", async () => {
-            selectedAge = profil.age_restriction || 0;
-            window.selectedProfilId = profil.id;
-
-            await V.renderFavorieList();
-            await V.updateContentForProfil();
-          });
-
-          ProfilSelector.appendChild(cardElement);
+          ProfilSelector.innerHTML += optionHTML;
         });
+
+        ProfilSelector.onchange = async function () {
+          const selectedOption =
+            ProfilSelector.options[ProfilSelector.selectedIndex];
+          selectedAge = parseInt(selectedOption.textContent.match(/\d+/)) || 0;
+          window.selectedProfilId = selectedOption.value;
+          await V.renderFavorieList();
+          await V.updateContentForProfil();
+        };
       };
 
       // Update Content for Profil

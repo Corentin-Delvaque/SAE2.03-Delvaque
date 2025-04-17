@@ -69,6 +69,10 @@ window.handleLike = async function (button) {
       ? "Film ajouté aux favoris !"
       : "Une erreur s'est produite lors de l'ajout aux favoris."
   );
+
+  if (success) {
+    await V.renderFavorieList();
+  }
 };
 
 window.handleDislike = async function (button) {
@@ -96,6 +100,10 @@ window.handleDislike = async function (button) {
       ? "Film supprimé des favoris !"
       : "Une erreur s'est produite lors de la suppression des favoris."
   );
+
+  if (success) {
+    await V.renderFavorieList();
+  }
 };
 
 export { AnimeCard };

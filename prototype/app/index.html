@@ -149,32 +149,28 @@
 
         if (profils.length === 0) {
           ProfilSelector.innerHTML =
-            "<p>Aucun profil disponible pour le moment.</p>";
+            "<option disabled>Aucun profil disponible pour le moment.</option>";
           return;
         }
 
         ProfilSelector.innerHTML = "";
         profils.forEach((profil) => {
-          const cardHTML = ProfilCard.format(
+          const optionHTML = ProfilCard.format(
             profil.name,
-            profil.avatar,
             profil.age_restriction,
             profil.id
           );
-          const tempDiv = document.createElement("div");
-          tempDiv.innerHTML = cardHTML;
-          const cardElement = tempDiv.firstChild;
-
-          cardElement.addEventListener("click", async () => {
-            selectedAge = profil.age_restriction || 0;
-            window.selectedProfilId = profil.id;
-
-            await V.renderFavorieList();
-            await V.updateContentForProfil();
-          });
-
-          ProfilSelector.appendChild(cardElement);
+          ProfilSelector.innerHTML += optionHTML;
         });
+
+        ProfilSelector.onchange = async function () {
+          const selectedOption =
+            ProfilSelector.options[ProfilSelector.selectedIndex];
+          selectedAge = parseInt(selectedOption.textContent.match(/\d+/)) || 0;
+          window.selectedProfilId = selectedOption.value;
+          await V.renderFavorieList();
+          await V.updateContentForProfil();
+        };
       };
 
       // Update Content for Profil
