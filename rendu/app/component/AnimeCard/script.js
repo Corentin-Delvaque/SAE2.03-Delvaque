@@ -40,6 +40,7 @@ AnimeCard.format = function (
   html = html.replace("{{Name}}", truncatedName);
   html = html.replace("{{id}}", id);
   html = html.replace("{{id}}", id);
+
   return html;
 };
 

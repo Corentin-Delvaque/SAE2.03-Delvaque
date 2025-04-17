@@ -11,32 +11,6 @@
     <!-- Header Section -->
     <header id="header"></header>
 
-    <!-- Category Selector -->
-    <div class="category__selector" id="category-selector">
-      <label class="category__selector--title" for="category"
-        >Choisissez une catégorie :</label
-      >
-      <select class="category__selector--options" id="category">
-        <option class="category-selector--option" value="all" selected>
-          Tous les animes
-        </option>
-        <option class="category__selector--option" value="1">Action</option>
-        <option class="category__selector--option" value="2">Comédie</option>
-        <option class="category__selector--option" value="3">Drame</option>
-        <option class="category__selector--option" value="4">
-          Science-fiction
-        </option>
-        <option class="category__selector--option" value="5">Thriller</option>
-        <option class="category__selector--option" value="6">Horreur</option>
-        <option class="category__selector--option" value="7">Aventure</option>
-        <option class="category__selector--option" value="8">Fantaisie</option>
-        <option class="category__selector--option" value="9">
-          Documentaire
-        </option>
-        <option class="category__selector--option" value="10">Romance</option>
-      </select>
-    </div>
-
     <!-- Main Content Section -->
     <section class="content" id="content"></section>
 
@@ -70,9 +44,15 @@
         );
       };
 
+      C.handlerRecherche = () => {
+        alert(
+          "Cette fonctionnalité n'est pas encore implémentée. Veuillez revenir plus tard."
+        );
+      };
+
       // Application Start Function
       C.start = async () => {
-        V.renderNavBar("C.handlerAbout()");
+        V.renderNavBar("C.handlerAbout()", "C.handlerRecherche()");
         await V.renderAnimeCards(selectedAge);
         await V.renderProfilCards();
         await V.renderFavorieList();
@@ -246,32 +226,6 @@
           const favorieHTML = FavorieCard.format(favorie.name);
           FavorieList.innerHTML += favorieHTML;
         });
-      };
-
-      // Render Category Sections
-      V.renderCategorySections = async () => {
-        const content = document.querySelector("#content");
-
-        const categories = [
-          { id: 1, name: "Action" },
-          { id: 2, name: "Comédie" },
-          { id: 3, name: "Drame" },
-          { id: 4, name: "Science-fiction" },
-          { id: 5, name: "Animation" },
-          { id: 6, name: "Thriller" },
-          { id: 7, name: "Horreur" },
-          { id: 8, name: "Aventure" },
-          { id: 9, name: "Fantaisie" },
-          { id: 10, name: "Documentaire" },
-        ];
-
-        for (let category of categories) {
-          const sectionHTML = await CategorySection.format(
-            category.id,
-            category.name
-          );
-          content.innerHTML += sectionHTML;
-        }
       };
 
       // Category Change Event Listener

@@ -4,14 +4,32 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 1rem 3rem;
-  border-radius: 0 0 1rem 1rem;
+  padding: 0 3rem;
+
+  border-bottom: 4px solid var(--gradient-rainbow);
 
   color: var(--color-fg);
-  background-color: var(--color-gray-fonce);
+  background: var(--color-gray-fonce);
+}
+
+.navbar__logo {
+  width: auto;
+  height: 1.75rem;
 }
 
 .navbar .navbar__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__container--left {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -27,17 +45,29 @@
   display: flex;
   flex-direction: row;
 
-  --_offset: 0.2rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 0.5rem;
 
   font-family: var(--ff-sans);
-  font-size: 1rem;
+  font-size: 1.125rem;
+
+  cursor: pointer;
+  color: var(--color-gray);
+}
+
+.navbar__item:nth-child(1) {
+  --_offset: 0.3rem;
+
+  font-family: var(--ff-sans-bold);
+
   text-decoration: underline;
   text-decoration-thickness: 0.1rem;
   text-underline-offset: var(--_offset);
 
-  cursor: pointer;
   color: var(--color-blanche);
+}
+
+.navbar__item:hover {
+  color: var(--color-green);
 }
 
 .navbar .navbar__item:hover {
@@ -51,7 +81,7 @@
 .sous {
   display: none;
   position: absolute;
-  translate: 0 2rem;
+  translate: 0 2.5rem;
   z-index: 1000;
 
   max-width: max-content;
@@ -63,9 +93,9 @@
   font-family: var(--ff-sans);
   font-size: 1rem;
   font-weight: bold;
-  color: var(--color-blanche);
+  color: var(--color-noir);
 
-  background-color: var(--color-noir);
+  background-color: var(--color-green);
   cursor: pointer;
 
   transition: all 0.2s ease-in-out;
