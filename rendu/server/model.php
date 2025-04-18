@@ -5,7 +5,6 @@ define("DBNAME", "delvaque1");
 define("DBLOGIN", "delvaque1");
 define("DBPWD", "delvaque1");
 
-// Retourne tous les films dont l’âge minimum requis (min_age) est inférieur ou égal à l’âge fourni.
 function getMovies($age) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
@@ -20,7 +19,6 @@ function getMovies($age) {
     }
 }
 
-// Retourne tous les films d'une catégorie spécifique dont l’âge minimum requis (min_age) est inférieur ou égal à l’âge fourni.
 function getMoviesFiltered($id_category, $name, $image, $age) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
@@ -38,7 +36,6 @@ function getMoviesFiltered($id_category, $name, $image, $age) {
     }
 }
 
-// Retourne tous les profils d'utilisateur.
 function getProfils() {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
@@ -52,7 +49,6 @@ function getProfils() {
     }
 }
 
-// Retourne tous les favoris d'un utilisateur, y compris le nom du film associé.
 function getFavorie() {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
@@ -68,7 +64,6 @@ function getFavorie() {
     }
 }
 
-// Ajoute un film à la base de données.
 function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'INSERT INTO Movie(name, year, length, description, director, id_category, image, trailer, min_age) VALUES(:name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age)';
@@ -87,7 +82,6 @@ function addMovie($name, $year, $length, $description, $director, $id_category, 
     return $stmt->rowCount();
 }
 
-// Ajoute un profil utilisateur à la base de données.
 function addProfil($name, $avatar, $age_restriction) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'INSERT INTO UserProfil(name, avatar, age_restriction) VALUES(:name, :avatar, :age_restriction)';
@@ -100,7 +94,6 @@ function addProfil($name, $avatar, $age_restriction) {
     return $stmt->rowCount();
 }
 
-// Modifie un profil utilisateur dans la base de données.
 function modProfil($id, $name, $avatar, $age_restriction) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'UPDATE UserProfil SET name = :name, avatar = :avatar, age_restriction = :age_restriction WHERE id = :id';
@@ -114,7 +107,6 @@ function modProfil($id, $name, $avatar, $age_restriction) {
     return $stmt->rowCount();
 }
 
-// Ajoute un film aux favoris d'un utilisateur.
 function addFavorie($id_profil, $id_movie) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     $sql = 'INSERT INTO Favorie(id_profil, id_movie) VALUES(:id_profil, :id_movie)';
@@ -126,7 +118,6 @@ function addFavorie($id_profil, $id_movie) {
     return $stmt->rowCount();
 }
 
-// Supprime un film des favoris d'un utilisateur.
 function delFavorie($id_profil, $id_movie) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);

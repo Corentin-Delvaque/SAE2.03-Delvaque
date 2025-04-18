@@ -27,19 +27,19 @@
       C.handlerCreate = async function () {
         let form = document.querySelector(".newAnime__form");
         let fd = new FormData(form);
-        let res = await DataMovie.add(fd);
+        let res = await DataMovie.addMovie(fd);
       };
 
       C.handlerCreateProfil = async function () {
         let form = document.querySelector(".newProfil__form");
         let fd = new FormData(form);
-        let res = await DataProfil.add(fd);
+        let res = await DataProfil.addProfil(fd);
       };
 
       C.handlerModifyProfil = async function () {
         let form = document.querySelector(".modProfil__form");
         let fd = new FormData(form);
-        let res = await DataProfil.mod(fd);
+        let res = await DataProfil.modProfil(fd);
       };
 
       C.start = function () {

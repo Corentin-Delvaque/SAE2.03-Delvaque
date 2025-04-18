@@ -1,7 +1,7 @@
-let HOST_URL = "https://mmi.unilim.fr/~delvaque1/SAE2.03-Delvaque/";
+let HOST_URL = "https://mmi.unilim.fr/~delvaque1/SAE2.03-Delvaque/prototype/";
 let DataProfil = {};
 
-DataProfil.addProfils = async function (fdata) {
+DataProfil.addProfil = async function (fdata) {
   // fetch possède un deuxième paramètre (optionnel) qui est un objet de configuration de la requête HTTP:
   //  - method : la méthode HTTP à utiliser (GET, POST...)
   //  - body : les données à envoyer au serveur (sous forme d'objet FormData ou bien d'une chaîne de caractères, par exempe JSON)
@@ -19,7 +19,7 @@ DataProfil.addProfils = async function (fdata) {
   return data;
 };
 
-DataProfil.modProfils = async function (fdata) {
+DataProfil.modProfil = async function (fdata) {
   // fetch possède un deuxième paramètre (optionnel) qui est un objet de configuration de la requête HTTP:
   //  - method : la méthode HTTP à utiliser (GET, POST...)
   //  - body : les données à envoyer au serveur (sous forme d'objet FormData ou bien d'une chaîne de caractères, par exempe JSON)
