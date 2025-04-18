@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap");
+@import url(https://db.onlinewebfonts.com/c/1f8334465dcfc84ca1372d055364e229?family=DIN+Next+LT+W04+Regular);
+@import url(https://db.onlinewebfonts.com/c/35d509d97591297fd2b00300fd4eb5ab?family=DIN+Next+LT+W04+Bold);
 
 :root {
   --color-noir: #000000;
@@ -8,10 +9,18 @@
   --color-blanche-froid: #dcdcdc;
   --color-jaune: #ffcc00;
   --color-jaune-fonce: #b8860b;
-  --color-gray: #808080;
-  --color-gray-fonce: #242424;
-  --color-green: hsl(120, 100%, 37%);
+  --color-gray: #c7c7ca;
+  --color-gray-fonce: #0e0f17e6;
+  --color-gray-fonce2: #1a1c28;
+  --color-green: #03ddbd;
+  --color-green-fonce: #014a3f;
   --color-accent: var(--color-green);
+  --color-gradient-gris-noir: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 1)
+  );
 
-  --ff-sans: "DM Sans", sans-serif;
+  --ff-sans: "DIN Next LT W04 Regular", sans-serif;
+  --ff-sans-bold: "DIN Next LT W04 Bold", sans-serif;
 }

@@ -9,7 +9,7 @@
   border: 1px solid var(--color-blanche-froid);
   border-radius: 1rem;
 
-  font-family: Arial, sans-serif;
+  font-family: var(--ff-sans-bold);
 
   background-color: var(--color-blanche);
   box-shadow: 0 4px 6px var(--color-noir-50);
@@ -18,6 +18,7 @@
 .newAnime__title {
   margin-bottom: 1.25rem;
 
+  font-family: var(--ff-sans);
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
@@ -35,9 +36,10 @@
 .newAnime__form input,
 .newAnime__form select {
   padding: 1rem;
-  border: 1px solid var(--color-jaune-fonce);
+  border: 1px solid var(--color-green-fonce);
   border-radius: 4px;
 
+  font-family: var(--ff-sans);
   font-size: 1rem;
 
   outline: none;
@@ -47,15 +49,16 @@
 
 .newAnime__form input:focus,
 .newAnime__form select:focus {
-  border-color: var(--color-jaune);
+  border-color: var(--color-green);
 }
 
 .newAnime__form input[type="button"] {
   border: none;
 
+  font-family: var(--ff-sans);
   font-weight: bold;
   color: var(--color-blanche);
-  background-color: var(--color-jaune-fonce);
+  background-color: var(--color-green-fonce);
 
   cursor: pointer;
 
@@ -63,7 +66,8 @@
 }
 
 .newAnime__form input[type="button"]:hover {
-  background-color: var(--color-jaune);
+  background-color: var(--color-green);
+  color: var(--color-noir);
 }
 
 .newAnime__form select {
