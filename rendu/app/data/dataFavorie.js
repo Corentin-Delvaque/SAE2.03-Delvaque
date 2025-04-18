@@ -1,4 +1,4 @@
-let HOST_URL = "https://mmi.unilim.fr/~delvaque1/SAE2.03-Delvaque/prototype/";
+let HOST_URL = "https://mmi.unilim.fr/~delvaque1/SAE2.03-Delvaque/rendu/";
 
 let DataFavorie = {};
 

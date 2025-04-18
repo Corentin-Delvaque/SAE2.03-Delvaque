@@ -21,11 +21,11 @@ body {
   align-items: center;
   justify-content: left;
 
+  margin: 1rem 0;
   padding: 1rem;
   padding-left: 3rem;
   padding-top: 1rem;
   gap: 1rem;
-  margin: 1rem 0;
 
   font-family: Arial, sans-serif;
 }
@@ -39,18 +39,21 @@ body {
 }
 
 .category__selector--select {
-  background: none;
+  display: inline-block;
+
+  padding: 0;
+  margin: 0;
   border: 1px solid var(--color-blanche-froid);
   border-radius: 0.5rem;
-  background-image: none;
+
   font-family: var(--ff-sans);
   font-size: 1.2rem;
   color: var(--color-blanche);
   text-align: left;
-  cursor: pointer;
 
-  padding: 0;
-  margin: 0;
+  background: none;
+  background-image: none;
+  cursor: pointer;
 }
 
 .category__selector--select::after {

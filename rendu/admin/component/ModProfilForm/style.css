@@ -3,16 +3,16 @@
   flex-direction: column;
 
   margin: 1rem auto;
+
   width: 37rem;
   padding: 1rem;
 
   border: 1px solid var(--color-blanche-froid);
   border-radius: 1rem;
-
-  font-family: var(--ff-sans-bold);
-
   background-color: var(--color-blanche);
   box-shadow: 0 4px 6px var(--color-noir-50);
+
+  font-family: var(--ff-sans-bold);
 }
 
 .modProfil__title {

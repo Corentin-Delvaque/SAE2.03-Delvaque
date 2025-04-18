@@ -2,69 +2,77 @@
 
 require("controller.php");
 
-if ( isset($_REQUEST['todo']) ){
+// Vérifie si un paramètre 'todo' est présent
+if (isset($_REQUEST['todo'])) {
 
-  header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-  $todo = $_REQUEST['todo'];
-  $age = isset($_REQUEST['age']) ? intval($_REQUEST['age']) : 0;
+    $todo = $_REQUEST['todo'];
+    $age = isset($_REQUEST['age']) ? intval($_REQUEST['age']) : 0;
 
-  switch($todo){
-    case 'getMovies':
-      $data = getMoviesController($age);
-      break;
+    // Déclare une variable de réponse par défaut
+    $data = null;
 
-    case 'getMoviesFiltered':
-      $data = getMoviesFilteredController($age);
-      break;
+    // Route les actions vers les bons contrôleurs
+    switch ($todo) {
+        case 'getMovies':
+            $data = getMoviesController($age);
+            break;
 
-    case 'getProfils':
-      $data = getProfilsController();
-      break;
+        case 'getMoviesFiltered':
+            $data = getMoviesFilteredController($age);
+            break;
 
-    case 'getFavorie':
-      $data = getFavorieController();
-      break;
+        case 'getProfils':
+            $data = getProfilsController();
+            break;
 
-    case 'addMovie':
-        $data = addMovieController();
-      break;
+        case 'getFavorie':
+            $data = getFavorieController();
+            break;
 
-    case 'addProfil':
-        $data = addProfilController();
-      break;
+        case 'addMovie':
+            $data = addMovieController();
+            break;
 
-    case 'addFavorie':
-        $data = addFavorieController();
-      break;
+        case 'addProfil':
+            $data = addProfilController();
+            break;
 
-    case 'modProfil':
-        $data = modProfilController();
-      break;
+        case 'addFavorie':
+            $data = addFavorieController();
+            break;
 
-    case 'delFavorie':
-        $data = delFavorieController();
-      break;
+        case 'modProfil':
+            $data = modProfilController();
+            break;
 
-    default: 
-      echo json_encode('[error] Unknown todo value');
-      http_response_code(400); 
-      exit();
-  }
+        case 'delFavorie':
+            $data = delFavorieController();
+            break;
 
-  if ($data===false){
-    echo json_encode('[error] Controller returns false');
-    http_response_code(500); 
+        default:
+            http_response_code(400);
+            echo json_encode(['error' => 'Unknown "todo" value']);
+            exit();
+    }
+
+    // Gestion d'erreur au niveau du contrôleur
+    if ($data === false) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Controller returned false']);
+        exit();
+    }
+
+    // Réponse OK
+    http_response_code(200);
+    echo json_encode($data);
     exit();
-  }
+}
 
-  echo json_encode($data);
-  http_response_code(200);
-  exit();
-
-   
-} 
-
-http_response_code(404); 
+// Aucun paramètre 'todo' fourni
+http_response_code(404);
+echo json_encode(['error' => 'Missing "todo" parameter']);
+exit();
 
 ?>
